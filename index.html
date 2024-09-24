@@ -89,8 +89,7 @@
         const messageInput = document.getElementById('message-input');
         const usernameInput = document.getElementById('username-input');
         const sendBtn = document.getElementById('send-btn');
-        let latestId = 0;
-        const numShownMessages = 32;
+        let latestId = -1;
 
         // Function to generate a random light color based on the username
         function generateUsernameColor(username) {
@@ -157,17 +156,18 @@
         }
 
         // Load messages starting from the latest message id
-        async function loadMessages(id) {
+        async function loadMessages() {
             let currentId = await getLatestMessageId();
-            let fromId = Math.max(0, currentId - numShownMessages);
-            let messages = await getMessagesFrom(fromId);
-            setMessages(messages);
+            if (latestId < currentId) {
+                let messages = await getMessagesFrom(latestId + 1);
+                addMessages(messages);
+                latestId = currentId;
+            }
         }
 
         // Append messages to the chat box
-        function setMessages(messages) {
+        function addMessages(messages) {
             const messages_list = messages.split("\r");
-            chatBox.innerHTML = "";  // Clear the chat box
             messages_list.forEach((message) => {
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('message');
@@ -238,6 +238,7 @@
                 const success = await sendMessage(fullMessage);
                 if (success) {
                     messageInput.value = '';  // Clear input
+                    messageInput.focus();
                     autoResizeTextarea();  // Reset the textarea height
                     await loadMessages();     // Load new messages
                 } else {
