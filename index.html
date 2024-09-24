@@ -177,12 +177,17 @@
         }
 
         // Load messages starting from the latest message id
-        async function loadMessages() {
+        async function updateMessages() {
             let currentId = await getLatestMessageId();
             if (latestId < currentId) {
+                const scorlledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
+                // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
                 let messages = await getMessagesFrom(latestId + 1);
                 addMessages(messages);
                 latestId = currentId;
+                if (scorlledToBottom) {
+                    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+                }
             }
         }
 
@@ -233,7 +238,6 @@
 
                 chatBox.appendChild(messageDiv);
             });
-            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
         }
 
         // Handle send button click
@@ -255,7 +259,7 @@
                     messageInput.value = '';  // Clear input
                     messageInput.focus();
                     autoResizeTextarea();  // Reset the textarea height
-                    await loadMessages();     // Load new messages
+                    await updateMessages();     // Load new messages
                 } else {
                     alert('Failed to send message');
                 }
@@ -265,8 +269,8 @@
         }
 
         // Poll for new messages every 2 seconds
-        loadMessages();
-        setInterval(loadMessages, 2000);
+        updateMessages();
+        setInterval(updateMessages, 2000);
     </script>
 </body>
 </html>
