@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;  /* Full height of the page */
+        }
+        #chat-box {
+            flex-grow: 1;  /* This ensures the chat-box fills the available space */
+            overflow-y: auto;
+            border: 1px solid black;
+            padding: 10px;
+        }
+        #input-section {
+            display: flex;
+            align-items: center;  /* Align items vertically */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #username-input {
+            width: 10ch;  /* Set to 10-character width */
+            margin-right: 10px;
+            height: 2em;  /* Set a fixed height for alignment */
+            font-size: 1em;  /* Adjust font size */
+        }
+        #message-input {
+            flex-grow: 1;
+            margin-right: 10px;
+            height: 2em;  /* Same height as username input */
+            resize: none;
+            overflow: hidden;
+            font-size: 1em;
+        }
+        #send-btn {
+            height: 2em;  /* Same height as input fields */
+            padding: 0 15px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .meta-info {
+            display: flex;
+            gap: 10px;  /* Compact metadata */
+            font-size: 0.9em;
+            color: grey;
+        }
+        .message-id {
+            width: 6ch;
+            color: blue;
+        }
+        .username {
+            font-weight: bold;
+            width: 10ch;  /* Set to 10-character width */
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .timestamp {
+            font-size: 0.8em;
+        }
+        .content {
+            margin-top: 5px;
+            white-space: pre-wrap;  /* Preserve line breaks in content */
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-box"></div>
+    
+    <!-- Input Section (username, message, and send button) -->
+    <div id="input-section">
+        <input type="text" id="username-input" placeholder="Username" maxlength="10" />
+        <textarea id="message-input" rows="1" placeholder="Enter your message here"></textarea>
+        <button id="send-btn">Send</button>
+    </div>
+
+    <script>
+        const url = "[SECRET_URL]";
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message-input');
+        const usernameInput = document.getElementById('username-input');
+        const sendBtn = document.getElementById('send-btn');
+        let latestId = 0;
+        const numShownMessages = 32;
+
+        // Function to generate a random light color based on the username
+        function generateUsernameColor(username) {
+            if (!username) {
+                return "#fff";
+            } 
+            // Create a simple hash from the username
+            let hash = 0;
+            for (let i = 0; i < username.length; i++) {
+                hash = username.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            // Convert the hash to an HSL color
+            const h = hash % 360;  // Hue value between 0-360
+            const s = 70;
+            const l = 90;
+            return `hsl(${h}, ${s}%, ${l}%)`;
+        }
+
+        // Automatically adjust the height of the textarea
+        function autoResizeTextarea() {
+            messageInput.style.height = 'auto';  // Reset the height
+            messageInput.style.height = messageInput.scrollHeight + 'px';  // Set new height
+        }
+
+        // Attach event listener to the textarea to adjust height on input
+        messageInput.addEventListener('input', autoResizeTextarea);
+
+        // Function to send message on Enter key press
+        messageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault(); // Prevent adding new lines
+                sendMessageHandler(); // Trigger send message when Enter is pressed
+            }
+        });
+
+        async function getLatestMessageId() {
+            const response = await fetch(url);
+            if (response.ok) {
+                return +(await response.text());
+            }
+            return null;
+        }
+
+        // Fetch messages starting from a specific id
+        async function getMessagesFrom(id) {
+            const response = await fetch(`${url}?from=${id}`);
+            if (response.ok) {
+                return await response.text();
+            }
+            return null;
+        }
+
+        // Send a new message (without message ID since server assigns it)
+        async function sendMessage(content) {
+            const response = await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: content
+            });
+            return response.ok;
+        }
+
+        // Load messages starting from the latest message id
+        async function loadMessages(id) {
+            let currentId = await getLatestMessageId();
+            let fromId = Math.max(0, currentId - numShownMessages);
+            let messages = await getMessagesFrom(fromId);
+            setMessages(messages);
+        }
+
+        // Append messages to the chat box
+        function setMessages(messages) {
+            const messages_list = messages.split("\n");
+            chatBox.innerHTML = "";  // Clear the chat box
+            messages_list.forEach((message) => {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                
+                // Separate the first word as message ID, and then split the remaining message
+                const messageParts = message.split(' ');
+                const messageId = messageParts[0];  // First word is the message ID
+                const restOfMessage = messageParts.slice(1).join(' ');  // Rest of the message
+
+                // Split the rest of the message into content, username, and timestamp
+                const messageTokens = restOfMessage.split(' ');
+                const timestamp = messageTokens.pop();  // Last token is the timestamp
+                const username = messageTokens.pop();  // Second to last token is the username
+                const content = messageTokens.join(' ');  // The remaining is the message content
+
+                // Create the meta-info div (Message ID, Username, Timestamp in one line)
+                const metaInfoDiv = document.createElement('div');
+                metaInfoDiv.classList.add('meta-info');
+
+                const messageIdDiv = document.createElement('span');
+                messageIdDiv.classList.add('message-id');
+                messageIdDiv.innerText = `#${messageId}`;
+
+                const usernameDiv = document.createElement('span');
+                usernameDiv.classList.add('username');
+                usernameDiv.innerText = username;
+
+                const timestampDiv = document.createElement('span');
+                timestampDiv.classList.add('timestamp');
+                timestampDiv.innerText = timestamp;
+
+                metaInfoDiv.appendChild(messageIdDiv);
+                metaInfoDiv.appendChild(usernameDiv);
+                metaInfoDiv.appendChild(timestampDiv);
+
+                // Create the content div (Message content in separate lines)
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('content');
+                contentDiv.innerText = content;
+
+                // Append the meta-info and content to the message div
+                messageDiv.appendChild(metaInfoDiv);
+                messageDiv.appendChild(contentDiv);
+
+                // Set random light background color based on the username
+                const backgroundColor = generateUsernameColor(username);
+                messageDiv.style.backgroundColor = backgroundColor;
+
+                chatBox.appendChild(messageDiv);
+            });
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+        }
+
+        // Handle send button click
+        sendBtn.addEventListener('click', sendMessageHandler);
+
+        // Function to handle message sending
+        async function sendMessageHandler() {
+            const username = usernameInput.value.trim();  // Get the username
+            const content = messageInput.value.trim();    // Get the message
+            if (content !== '' && username !== '') {
+                // Append username and ISO 8601 timestamp to the message
+                const timestamp = new Date().toISOString();  // Get the current date and time in ISO 8601
+
+                // Send the message content and username (server assigns the message ID)
+                const fullMessage = `${content} ${username} ${timestamp}`;  // Message content, username, and timestamp
+
+                const success = await sendMessage(fullMessage);
+                if (success) {
+                    messageInput.value = '';  // Clear input
+                    autoResizeTextarea();  // Reset the textarea height
+                    await loadMessages();     // Load new messages
+                } else {
+                    alert('Failed to send message');
+                }
+            } else {
+                alert('Please enter both a message and a username.');
+            }
+        }
+
+        // Poll for new messages every 2 seconds
+        loadMessages();
+        setInterval(loadMessages, 2000);
+    </script>
+</body>
+</html>
