@@ -46,9 +46,9 @@
             display: flex;
             justify-content: space-between;  /* Aligns metadata and content in a row */
             align-items: center;  /* Vertically aligns metadata and content */
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 10px;
+            margin-bottom: 5px;
+            padding: 5px;
+            /*border-radius: 10px;*/
             background-color: #f1f1f1;
         }
         .meta-info {
@@ -63,7 +63,8 @@
             flex-grow: 1;  /* Allows the content to take up the remaining space */
             margin-right: 10px;  /* Adds space between content and metadata */
             white-space: pre-wrap;  /* Preserve line breaks in content */
-            word-wrap: break-word;  /* Allows content to break into new lines if necessary */
+            word-break: break-all;
+            /* word-wrap: break-all;  Allows content to break into new lines if necessary */
         }
         .message-id {
             color: blue;
