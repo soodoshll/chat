@@ -43,34 +43,41 @@
             padding: 0 15px;
         }
         .message {
+            display: flex;
+            justify-content: space-between;  /* Aligns metadata and content in a row */
+            align-items: center;  /* Vertically aligns metadata and content */
             margin-bottom: 10px;
             padding: 10px;
             border-radius: 10px;
+            background-color: #f1f1f1;
         }
         .meta-info {
             display: flex;
-            gap: 10px;  /* Compact metadata */
+            /* gap: 10px;  Adds spacing between metadata elements */
             font-size: 0.9em;
             color: grey;
+            white-space: nowrap;  /* Prevent line breaks in metadata */
+            margin-right: 15px; 
+        }
+        .content {
+            flex-grow: 1;  /* Allows the content to take up the remaining space */
+            margin-right: 10px;  /* Adds space between content and metadata */
+            white-space: pre-wrap;  /* Preserve line breaks in content */
+            word-wrap: break-word;  /* Allows content to break into new lines if necessary */
         }
         .message-id {
-            width: 6ch;
             color: blue;
         }
         .username {
             font-weight: bold;
-            width: 10ch;  /* Set to 10-character width */
+            width: 8ch;  /* Set to 10-character width */
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
         }
-        .timestamp {
+        /* .timestamp {
             font-size: 0.8em;
-        }
-        .content {
-            margin-top: 5px;
-            white-space: pre-wrap;  /* Preserve line breaks in content */
-        }
+        } */
     </style>
 </head>
 <body>
@@ -106,6 +113,19 @@
             const s = 70;
             const l = 90;
             return `hsl(${h}, ${s}%, ${l}%)`;
+        }
+
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            
+            return date.toLocaleString(undefined, {
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            }).replace(',', '');
         }
 
         // Automatically adjust the height of the textarea
@@ -175,21 +195,15 @@
                 // Separate the first word as message ID, and then split the remaining message
                 const messageParts = message.split(' ');
                 const messageId = messageParts[0];  // First word is the message ID
-                const restOfMessage = messageParts.slice(1).join(' ');  // Rest of the message
+                const content = messageParts.slice(3).join(' ');  // Rest of the message
 
                 // Split the rest of the message into content, username, and timestamp
-                const messageTokens = restOfMessage.split(' ');
-                const timestamp = messageTokens.pop();  // Last token is the timestamp
-                const username = messageTokens.pop();  // Second to last token is the username
-                const content = messageTokens.join(' ');  // The remaining is the message content
+                const username = messageParts[1];  // Second to last token is the username
+                const timestamp = messageParts[2];  // Last token is the timestamp
 
                 // Create the meta-info div (Message ID, Username, Timestamp in one line)
-                const metaInfoDiv = document.createElement('div');
+                const metaInfoDiv = document.createElement('span');
                 metaInfoDiv.classList.add('meta-info');
-
-                const messageIdDiv = document.createElement('span');
-                messageIdDiv.classList.add('message-id');
-                messageIdDiv.innerText = `#${messageId}`;
 
                 const usernameDiv = document.createElement('span');
                 usernameDiv.classList.add('username');
@@ -197,9 +211,9 @@
 
                 const timestampDiv = document.createElement('span');
                 timestampDiv.classList.add('timestamp');
-                timestampDiv.innerText = timestamp;
+                const timestr = formatDate(timestamp);
+                timestampDiv.innerText = timestr;
 
-                metaInfoDiv.appendChild(messageIdDiv);
                 metaInfoDiv.appendChild(usernameDiv);
                 metaInfoDiv.appendChild(timestampDiv);
 
@@ -233,7 +247,7 @@
                 const timestamp = new Date().toISOString();  // Get the current date and time in ISO 8601
 
                 // Send the message content and username (server assigns the message ID)
-                const fullMessage = `${content} ${username} ${timestamp}`;  // Message content, username, and timestamp
+                const fullMessage = `${username} ${timestamp} ${content}`;  // Message content, username, and timestamp
 
                 const success = await sendMessage(fullMessage);
                 if (success) {
