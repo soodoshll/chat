@@ -81,12 +81,9 @@ async function sendMessage(content) {
     return response.ok;
 }
 
-let updating = false;
 // Load messages starting from the latest message id
 async function updateMessages() {
-    if (updating) return;
-    updating = true;
-    let currentId = await getLatestMessageId();
+    let currentId = await getLatestMessageId() - 1;
     if (latestId < currentId) {
         const scorlledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
         // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
@@ -97,7 +94,6 @@ async function updateMessages() {
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
         }
     }
-    updating=false;
 }
 
 // Append messages to the chat box
