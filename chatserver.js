@@ -88,7 +88,7 @@ function notify() {
           if (permission === "granted") {
             // Create a new notification
             const notification = new Notification("New Message!", {
-              body: "This is a browser notification.",
+              body: "There are new messages",
             });
           }});
       }
@@ -101,6 +101,7 @@ async function updateMessages() {
     updating = true;
     let currentId = await getLatestMessageId() - 1;
     if (latestId < currentId) {
+        notify();
         const scorlledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
         // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
         let messages = await getMessagesFrom(latestId + 1);
