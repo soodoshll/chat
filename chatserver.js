@@ -101,7 +101,6 @@ async function updateMessages() {
     updating = true;
     let currentId = await getLatestMessageId() - 1;
     if (latestId < currentId) {
-        notify();
         const scorlledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
         // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
         let messages = await getMessagesFrom(latestId + 1);
@@ -130,6 +129,7 @@ function addMessages(messages) {
         const timestamp = +(messageParts[1]);  // Last token is the timestamp
         const username = messageParts[2];  // Second to last token is the username
 
+        if (username !== usernameInput.value.trim()) notify();
         // Create the meta-info div (Message ID, Username, Timestamp in one line)
         const metaInfoDiv = document.createElement('span');
         metaInfoDiv.classList.add('meta-info');
