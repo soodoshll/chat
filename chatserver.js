@@ -81,7 +81,7 @@ async function sendMessage(content) {
     return response.ok;
 }
 
-function notify() {
+function notifyNewMessage() {
     if ("Notification" in window) {
         // Request permission to show notifications
         Notification.requestPermission().then(permission => {
@@ -129,7 +129,7 @@ function addMessages(messages, notify=true) {
         const timestamp = +(messageParts[1]);  // Last token is the timestamp
         const username = messageParts[2];  // Second to last token is the username
 
-        if (notify && username !== usernameInput.value.trim()) notify();
+        if (notify && username !== usernameInput.value.trim()) notifyNewMessage();
         // Create the meta-info div (Message ID, Username, Timestamp in one line)
         const metaInfoDiv = document.createElement('span');
         metaInfoDiv.classList.add('meta-info');
