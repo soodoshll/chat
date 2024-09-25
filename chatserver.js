@@ -81,6 +81,19 @@ async function sendMessage(content) {
     return response.ok;
 }
 
+function notify() {
+    if ("Notification" in window) {
+        // Request permission to show notifications
+        Notification.requestPermission().then(permission => {
+          if (permission === "granted") {
+            // Create a new notification
+            const notification = new Notification("New Message!", {
+              body: "This is a browser notification.",
+            });
+          }});
+      }
+}
+
 // Load messages starting from the latest message id
 let updating = false;
 async function updateMessages() {
