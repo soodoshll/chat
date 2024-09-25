@@ -110,8 +110,8 @@ function addMessages(messages) {
         const content = messageParts.slice(3).join(' ');  // Rest of the message
 
         // Split the rest of the message into content, username, and timestamp
-        const username = messageParts[1];  // Second to last token is the username
-        const timestamp = messageParts[2];  // Last token is the timestamp
+        const timestamp = messageParts[1];  // Last token is the timestamp
+        const username = messageParts[2];  // Second to last token is the username
 
         // Create the meta-info div (Message ID, Username, Timestamp in one line)
         const metaInfoDiv = document.createElement('span');
@@ -154,11 +154,8 @@ async function sendMessageHandler() {
     const username = usernameInput.value.trim();  // Get the username
     const content = messageInput.value.trim();    // Get the message
     if (content !== '' && username !== '') {
-        // Append username and ISO 8601 timestamp to the message
-        const timestamp = new Date().toISOString();  // Get the current date and time in ISO 8601
-
         // Send the message content and username (server assigns the message ID)
-        const fullMessage = `${username} ${timestamp} ${content}`;  // Message content, username, and timestamp
+        const fullMessage = `${username} ${content}`;  // Message content, username, and timestamp
 
         const success = await sendMessage(fullMessage);
         if (success) {
