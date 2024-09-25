@@ -169,19 +169,20 @@ sendBtn.addEventListener('click', sendMessageHandler);
 // Function to handle message sending
 async function sendMessageHandler() {
     const username = usernameInput.value.trim();  // Get the username
+    const message_raw = messageInput.value;
     const content = messageInput.value.trim();    // Get the message
     if (content !== '' && username !== '') {
         // Send the message content and username (server assigns the message ID)
         const fullMessage = `${username} ${content}`;  // Message content, username, and timestamp
-
+        messageInput.value = '';  // Clear input
         const success = await sendMessage(fullMessage);
         if (success) {
-            messageInput.value = '';  // Clear input
             messageInput.focus();
             autoResizeTextarea();  // Reset the textarea height
             await updateMessages();     // Load new messages
         } else {
             alert('Failed to send message');
+            messageInput.value = message_raw;
         }
     } else {
         alert('Please enter both a message and a username.');
