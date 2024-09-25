@@ -109,7 +109,7 @@ function addMessages(messages) {
         const content = messageParts.slice(3).join(' ');  // Rest of the message
 
         // Split the rest of the message into content, username, and timestamp
-        const timestamp = messageParts[1];  // Last token is the timestamp
+        const timestamp = +(messageParts[1]);  // Last token is the timestamp
         const username = messageParts[2];  // Second to last token is the username
 
         // Create the meta-info div (Message ID, Username, Timestamp in one line)
