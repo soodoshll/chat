@@ -1,4 +1,3 @@
-const url = "[SECRET_URL]";
 const chatBox = document.getElementById('chat-box');
 const messageInput = document.getElementById('message-input');
 const usernameInput = document.getElementById('username-input');
