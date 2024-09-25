@@ -96,7 +96,7 @@ function notify() {
 
 // Load messages starting from the latest message id
 let updating = false;
-async function updateMessages() {
+async function updateMessages(notify=true) {
     if (updating) return;
     updating = true;
     let currentId = await getLatestMessageId() - 1;
@@ -104,7 +104,7 @@ async function updateMessages() {
         const scorlledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
         // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
         let messages = await getMessagesFrom(latestId + 1);
-        addMessages(messages);
+        addMessages(messages, notify=notify);
         latestId = currentId;
         if (scorlledToBottom) {
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
@@ -114,7 +114,7 @@ async function updateMessages() {
 }
 
 // Append messages to the chat box
-function addMessages(messages) {
+function addMessages(messages, notify=true) {
     const messages_list = messages.split("\r");
     messages_list.forEach((message) => {
         const messageDiv = document.createElement('div');
@@ -129,7 +129,7 @@ function addMessages(messages) {
         const timestamp = +(messageParts[1]);  // Last token is the timestamp
         const username = messageParts[2];  // Second to last token is the username
 
-        if (username !== usernameInput.value.trim()) notify();
+        if (notify && username !== usernameInput.value.trim()) notify();
         // Create the meta-info div (Message ID, Username, Timestamp in one line)
         const metaInfoDiv = document.createElement('span');
         metaInfoDiv.classList.add('meta-info');
@@ -189,5 +189,5 @@ async function sendMessageHandler() {
 }
 
 // Poll for new messages every 2 seconds
-updateMessages();
+updateMessages(notify=false);
 setInterval(updateMessages, 2000);
