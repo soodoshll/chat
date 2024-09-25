@@ -21,8 +21,8 @@ function generateUsernameColor(username) {
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
-function formatDate(isoString) {
-    const date = new Date(isoString);
+function formatDate(utctime) {
+    const date = new Date(utctime * 1000);
     
     return date.toLocaleString(undefined, {
         year: '2-digit',
