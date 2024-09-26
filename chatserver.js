@@ -275,7 +275,7 @@ setInterval(updateMessages, 2000);
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
 
-await fetch(fileUploadUrl, {
+fetch(fileUploadUrl, {
     method: "OPTIONS",
     body: ""
 });
