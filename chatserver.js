@@ -298,11 +298,17 @@ setInterval(updateMessages, 2000);
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
 
+async function readFile(file) {
+    const blob = file.slice(0, file.size);  // Read the entire file
+    const arrayBuffer = await blob.arrayBuffer();  // Read it as an ArrayBuffer
+    return arrayBuffer
+}
+
 async function uploadFile(file) {
     const response = await fetch(fileUploadUrl, {
         method: 'POST',
         mode: 'cors',
-        body: await file.bytes(),
+        body: await readFile(file),
     });
 
     if (response.ok) {
@@ -317,7 +323,7 @@ fileElem.style.display="inline";
 fileElem.addEventListener('change', async function() {
     alert("upload chosen");
     const file = fileElem.files[0];
-    alert(await file.bytes());
+    alert(await readFile(file));
     if (file) {
         fileUrl = await uploadFile(file);
         if (fileUrl) {
