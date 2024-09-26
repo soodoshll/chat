@@ -268,6 +268,7 @@ async function uploadFile(file) {
 
     const response = await fetch(fileUploadUrl, {
         method: 'POST',
+        mode: 'cors',
         body: formData,
     });
 
