@@ -320,7 +320,8 @@ async function uploadFile(file) {
 }
 
 fileElem.style.display="inline";
-fileElem.style.visibility="hidden";
+// fileElem.style.visibility="hidden";
+fileElem.style.opacity=0;
 fileElem.addEventListener('change', async function() {
     alert("upload chosen");
     const file = fileElem.files[0];
