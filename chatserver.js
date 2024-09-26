@@ -277,6 +277,7 @@ const fileElem = document.getElementById("fileElem");
 
 fetch(fileUploadUrl, {
     method: "OPTIONS",
+    mode: 'cors',
     body: ""
 });
 
