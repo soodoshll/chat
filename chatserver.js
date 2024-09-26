@@ -317,7 +317,7 @@ fileElem.style.display="inline";
 fileElem.addEventListener('change', async function() {
     alert("upload chosen");
     const file = fileElem.files[0];
-    alert(file.bytes());
+    alert(await file.bytes());
     if (file) {
         fileUrl = await uploadFile(file);
         if (fileUrl) {
