@@ -325,8 +325,8 @@ fileElem.style.opacity = 0;
 fileElem.style.position = "absolute";
 fileElem.style.left = "-9999px";
 fileElem.style.width = "1px";
-fileElem.style.hieght = "1px";
-fileElem.style.z-index = -1;
+fileElem.style.height = "1px";
+fileElem.style.zIndex = -1;
 fileElem.addEventListener('change', async function() {
     alert("upload chosen");
     const file = fileElem.files[0];
