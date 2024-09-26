@@ -96,19 +96,25 @@ function notifyNewMessage() {
 
 function addQuoteEvents(div, id) {
     let holdTimeout;
-    div.addEventListener('mousedown', function() {
+
+    function quote_func() {
         holdTimeout = setTimeout(() => {
             messageInput.value += ` #${id} `; // Add div id to the input box
         }, 500); // 1 second hold time
-    });
+    }
 
-    div.addEventListener('mouseup', function() {
-        clearTimeout(holdTimeout); // Cancel if released before 1 second
-    });
+    function quote_cancel() {
+        clearTimeout(holdTimeout);
+    }
 
-    div.addEventListener('mouseleave', function() {
-        clearTimeout(holdTimeout); // Cancel if mouse leaves the div
-    });
+    div.addEventListener('mousedown', quote_func);
+    div.addEventListener('touchstart', quote_func);
+
+    div.addEventListener('touchend', quote_cancel);
+    div.addEventListener('touchcancel', quote_cancel);
+    div.addEventListener('mouseup', quote_cancel);
+    div.addEventListener('mouseleave', quote_cancel);
+    div.addEventListener('mouseup', quote_cancel);
 
     div.addEventListener('click', function () {
         div.style.border = "";
@@ -119,6 +125,7 @@ function addQuoteEvents(div, id) {
 let currentHighLight;
 function toQuote(id){
     const div = document.getElementById(`msg_${id}`);
+    if (!div) return;
     if (currentHighLight)
         currentHighLight.style.border = "";
     div.style.border = "1px solid #888";
