@@ -313,7 +313,7 @@ async function uploadFile(file) {
     }
 }
 
-fileElem.style.display="";
+fileElem.style.display="inline";
 fileElem.addEventListener('change', async function() {
     alert("upload chosen");
     const file = fileElem.files[0];
