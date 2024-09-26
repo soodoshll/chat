@@ -149,10 +149,28 @@ function wrapQuoteEvent(text) {
     });
 }
 
+function extractFilenameFromUrl(url) {
+    // Regular expression to match URLs starting with https://uploadurl/, followed by somecache, and ending with filename
+    const pattern = `${fileUploadUrl}[a-zA-Z0-9]+\/([^\/\s]+)/`;
+    
+    // Execute the regex to find and capture the filename
+    const match = url.match(pattern);
+    
+    // If a match is found, return the captured filename (the part after /somecache/)
+    if (match && match[1]) {
+      return match[1];
+    }
+    
+    // Return null or an empty string if no match is found
+    return null;
+  }
+
 function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     return text.replace(urlPattern, function(url) {
-      return `<a href="${url}" target="_blank">${url}</a>`;
+        let display_url = extractFilenameFromUrl(url);
+        if (!display_url) display_url = url
+        return `<a href="${url}" target="_blank">${display_url}</a>`;
     });
 }
 
