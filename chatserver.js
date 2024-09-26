@@ -229,7 +229,7 @@ function addMessages(messages, notify=true) {
 
 // Handle send button click
 sendBtn.addEventListener('click', sendMessageHandler);
-messageInput.addEventListener('change', function() {
+messageInput.addEventListener('input', function() {
     if (messageInput.value == '') {
         sendBtn.hidden = true;
         fileSelect.hidden = false;
