@@ -110,10 +110,10 @@ function addQuoteEvents(div, id) {
     }
 
     div.addEventListener('mousedown', quote_func);
-    div.addEventListener('touchstart', quote_func);
+    // div.addEventListener('touchstart', quote_func);
 
-    div.addEventListener('touchend', quote_cancel);
-    div.addEventListener('touchcancel', quote_cancel);
+    // div.addEventListener('touchend', quote_cancel);
+    // div.addEventListener('touchcancel', quote_cancel);
     div.addEventListener('mouseup', quote_cancel);
     div.addEventListener('mouseleave', quote_cancel);
     div.addEventListener('mouseup', quote_cancel);
