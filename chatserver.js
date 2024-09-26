@@ -97,9 +97,9 @@ function notifyNewMessage() {
 function addQuoteEvents(div, id) {
     let holdTimeout;
 
-    function quote_func() {
-        holdTimeout = setTimeout((e) => {
-            e.preventDefault();
+    function quote_func(e) {
+        e.preventDefault();
+        holdTimeout = setTimeout(() => {
             messageInput.value += ` #${id} `; // Add div id to the input box
         }, 500); // 1 second hold time
     }
