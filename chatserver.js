@@ -97,7 +97,7 @@ function notifyNewMessage() {
 function addQuoteEvents(div, id) {
     div.addEventListener('mousedown', function() {
         holdTimeout = setTimeout(() => {
-            messageInput.value += id; // Add div id to the input box
+            messageInput.value += ` #${id} `; // Add div id to the input box
         }, 1000); // 1 second hold time
     });
 
@@ -172,7 +172,7 @@ function addMessages(messages, notify=true) {
         messageDiv.appendChild(contentDiv);
 
         addQuoteEvents(messageDiv, messageId);
-        
+
         // Set random light background color based on the username
         const backgroundColor = generateUsernameColor(username);
         messageDiv.style.backgroundColor = backgroundColor;
