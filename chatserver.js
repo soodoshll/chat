@@ -258,6 +258,8 @@ async function sendMessageHandler(e) {
             autoResizeTextarea();  // Reset the textarea height
             await updateMessages();     // Load new messages
             scrollToBottom();
+            sendBtn.hidden = true;
+            fileSelect.hidden = false;
         } else {
             alert('Failed to send message');
         }
