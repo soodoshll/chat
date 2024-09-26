@@ -156,6 +156,20 @@ function wrapURLs(text) {
     });
 }
 
+function escapeHTML(str) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;' // for single quotes, if needed
+    };
+    return str.replace(/[&<>"']/g, function(match) {
+      return map[match];
+    });
+  }
+  
+
 function scrollToBottom(){
     chatBox.scrollTop = chatBox.scrollHeight;
 }
@@ -217,6 +231,7 @@ function addMessages(messages, notify=true) {
         // Create the content div (Message content in separate lines)
         const contentDiv = document.createElement('div');
         contentDiv.classList.add('content');
+        content = escapeHTML(content);
         content = wrapQuoteEvent(content);
         content = wrapURLs(content);
         contentDiv.innerHTML = content;
