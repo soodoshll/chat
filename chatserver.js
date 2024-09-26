@@ -94,6 +94,22 @@ function notifyNewMessage() {
       }
 }
 
+function addQuoteEvents(div, id) {
+    div.addEventListener('mousedown', function() {
+        holdTimeout = setTimeout(() => {
+            messageInput.value += id; // Add div id to the input box
+        }, 1000); // 1 second hold time
+    });
+
+    div.addEventListener('mouseup', function() {
+        clearTimeout(holdTimeout); // Cancel if released before 1 second
+    });
+
+    div.addEventListener('mouseleave', function() {
+        clearTimeout(holdTimeout); // Cancel if mouse leaves the div
+    });
+}
+
 // Load messages starting from the latest message id
 let updating = false;
 async function updateMessages(notify=true) {
@@ -155,6 +171,8 @@ function addMessages(messages, notify=true) {
         messageDiv.appendChild(metaInfoDiv);
         messageDiv.appendChild(contentDiv);
 
+        addQuoteEvents(messageDiv, messageId);
+        
         // Set random light background color based on the username
         const backgroundColor = generateUsernameColor(username);
         messageDiv.style.backgroundColor = backgroundColor;
