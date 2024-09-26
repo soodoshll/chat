@@ -2,6 +2,7 @@ const chatBox = document.getElementById('chat-box');
 const messageInput = document.getElementById('message-input');
 const usernameInput = document.getElementById('username-input');
 const sendBtn = document.getElementById('send-btn');
+sendBtn.hidden = true;
 let latestId = -1;
 
 // Function to generate a random light color based on the username
@@ -228,6 +229,16 @@ function addMessages(messages, notify=true) {
 
 // Handle send button click
 sendBtn.addEventListener('click', sendMessageHandler);
+messageInput.addEventListener('change', function() {
+    if (messageInput.value == '') {
+        sendBtn.hidden = true;
+        fileSelect.hidden = false;
+    } else {
+        sendBtn.hidden = false;
+        fileSelect.hidden = true;        
+    }
+}
+);
 
 // Function to handle message sending
 let isSending = false;
