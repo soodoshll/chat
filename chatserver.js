@@ -109,19 +109,20 @@ function addQuoteEvents(div, id) {
     div.addEventListener('mouseleave', function() {
         clearTimeout(holdTimeout); // Cancel if mouse leaves the div
     });
+
+    div.addEventListener('click', function () {
+        div.style.border = "";
+    });
 }
 
 
 let currentHighLight;
 function toQuote(id){
     const div = document.getElementById(`msg_${id}`);
-    div.style.border = "1px solid #888";
     if (currentHighLight)
         currentHighLight.style.border = "";
-    if (currentHighLight == div)
-        currentHighLight = undefined;
-    else
-        currentHighLight = div;
+    div.style.border = "1px solid #888";
+    currentHighLight = div;
     chatBox.scrollTop = div.offsetTop;
 }
 
