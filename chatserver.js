@@ -288,7 +288,7 @@ async function uploadFile(file) {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await fetch("http://0.0.0.0:8080/", {
+    const response = await fetch("http://localhost:8080/", {
         method: 'POST',
         mode: 'cors',
         body: 'test',
