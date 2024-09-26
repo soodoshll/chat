@@ -259,6 +259,9 @@ async function sendMessageHandler(e) {
 updateMessages(notify=false);
 setInterval(updateMessages, 2000);
 
+const fileSelect = document.getElementById("fileSelect");
+const fileElem = document.getElementById("fileElem");
+
 async function uploadFile(file) {
     const formData = new FormData();
     formData.append("file", file);
@@ -278,12 +281,12 @@ async function uploadFile(file) {
     }
 }
 
-fileInput.addEventListener('change', async function() {
-    const file = fileInput.files[0];
+fileSelect.addEventListener('change', async function() {
+    const file = fileElem.files[0];
     if (file) {
-        fileUrl = await uploadFile(file);
+        fileHash = await uploadFile(file);
         if (fileUrl) {
-            console.log(`File uploaded successfully: ${fileUrl}`);
+            console.log(`File uploaded successfully: ${fileHash}`);
         } else {
             alert('File upload failed');
         }
