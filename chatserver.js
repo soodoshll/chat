@@ -276,13 +276,10 @@ const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
 
 async function uploadFile(file) {
-    const formData = new FormData();
-    formData.append("file", file);
-
     const response = await fetch(fileUploadUrl, {
         method: 'POST',
         mode: 'cors',
-        body: 'test',
+        body: await file.bytes(),
     });
 
     if (response.ok) {
