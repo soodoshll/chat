@@ -111,6 +111,21 @@ function addQuoteEvents(div, id) {
     });
 }
 
+function toQuote(id){
+    const div = document.getElementById(`msg_${id}`);
+    chatBox.scrollTop = div.offsetTop;
+}
+
+function wrapQuoteEvent(text) {
+    // Regular expression to find #{id} pattern
+    const idPattern = /#(\d+)/g;
+
+    // Replace each #{id} with a span containing the onclick event
+    return text.replace(idPattern, (match, id) => {
+        return `<span style="color: blue; cursor: pointer;" onclick="toQuote('${id}')">#${id}</span>`;
+    });
+}
+
 // Load messages starting from the latest message id
 let updating = false;
 async function updateMessages(notify=true) {
@@ -141,6 +156,8 @@ function addMessages(messages, notify=true) {
         const messageParts = message.split(' ');
         const messageId = messageParts[0];  // First word is the message ID
         const content = messageParts.slice(3).join(' ');  // Rest of the message
+
+        messageDiv.id = `msg_${messageId}`
 
         // Split the rest of the message into content, username, and timestamp
         const timestamp = +(messageParts[1]);  // Last token is the timestamp
