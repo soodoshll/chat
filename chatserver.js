@@ -335,4 +335,4 @@ fileSelect.addEventListener(
     false,
 );
 
-fileElem.style.hidden="inline";
+fileElem.style.display="";
