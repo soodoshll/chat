@@ -281,7 +281,7 @@ async function uploadFile(file) {
     }
 }
 
-fileSelect.addEventListener('change', async function() {
+fileElem.addEventListener('change', async function() {
     const file = fileElem.files[0];
     if (file) {
         fileHash = await uploadFile(file);
@@ -292,3 +292,13 @@ fileSelect.addEventListener('change', async function() {
         }
     }
 });
+
+fileSelect.addEventListener(
+    "click",
+    (e) => {
+      if (fileElem) {
+        fileElem.click();
+      }
+    },
+    false,
+  );
