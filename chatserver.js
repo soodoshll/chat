@@ -96,27 +96,30 @@ function notifyNewMessage() {
 
 function addQuoteEvents(div, id) {
     let holdTimeout;
+    // function quote_func(e) {
+    //     // e.preventDefault();
+    //     holdTimeout = setTimeout(() => {
+    //         messageInput.value += ` #${id} `; // Add div id to the input box
+    //     }, 1000); // 1 second hold time
+    // }
 
-    function quote_func(e) {
-        // e.preventDefault();
-        holdTimeout = setTimeout(() => {
-            messageInput.value += ` #${id} `; // Add div id to the input box
-        }, 1000); // 1 second hold time
-    }
+    // function quote_cancel(e) {
+    //     // e.preventDefault();
+    //     clearTimeout(holdTimeout);
+    // }
 
-    function quote_cancel(e) {
-        // e.preventDefault();
-        clearTimeout(holdTimeout);
-    }
+    // div.addEventListener('mousedown', quote_func);
+    // // div.addEventListener('touchstart', quote_func);
 
-    div.addEventListener('mousedown', quote_func);
-    // div.addEventListener('touchstart', quote_func);
-
-    // div.addEventListener('touchend', quote_cancel);
-    // div.addEventListener('touchcancel', quote_cancel);
-    div.addEventListener('mouseup', quote_cancel);
-    div.addEventListener('mouseleave', quote_cancel);
-    div.addEventListener('mouseup', quote_cancel);
+    // // div.addEventListener('touchend', quote_cancel);
+    // // div.addEventListener('touchcancel', quote_cancel);
+    // div.addEventListener('mouseup', quote_cancel);
+    // div.addEventListener('mouseleave', quote_cancel);
+    // div.addEventListener('mouseup', quote_cancel);
+    username = div.getElementsByClassName('username')[0];
+    username.addEventListener('click', function() {
+        messageInput.value += ` #${id} `;
+    });
 
     div.addEventListener('click', function () {
         div.style.border = "";
