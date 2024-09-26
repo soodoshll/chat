@@ -231,7 +231,8 @@ sendBtn.addEventListener('click', sendMessageHandler);
 
 // Function to handle message sending
 let isSending = false;
-async function sendMessageHandler() {
+async function sendMessageHandler(e) {
+    e.preventDefault();
     if (isSending) return;
     isSending = true;
     const username = usernameInput.value.trim();  // Get the username
