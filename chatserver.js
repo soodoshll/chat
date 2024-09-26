@@ -95,6 +95,7 @@ function notifyNewMessage() {
 }
 
 function addQuoteEvents(div, id) {
+    let holdTimeout;
     div.addEventListener('mousedown', function() {
         holdTimeout = setTimeout(() => {
             messageInput.value += ` #${id} `; // Add div id to the input box
