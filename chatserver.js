@@ -276,8 +276,12 @@ const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
 
 fetch(fileUploadUrl, {
-    method: "OPTIONS",
+    method: "GET",
     // mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json', // This triggers a preflight request
+        'Custom-Header': 'CustomValue' // Custom headers also trigger a preflight request
+    },
     body: ""
 });
 
