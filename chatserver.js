@@ -99,7 +99,7 @@ function addQuoteEvents(div, id) {
     div.addEventListener('mousedown', function() {
         holdTimeout = setTimeout(() => {
             messageInput.value += ` #${id} `; // Add div id to the input box
-        }, 1000); // 1 second hold time
+        }, 500); // 1 second hold time
     });
 
     div.addEventListener('mouseup', function() {
