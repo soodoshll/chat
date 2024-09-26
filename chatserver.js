@@ -275,13 +275,18 @@ setInterval(updateMessages, 2000);
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
 
+await fetch(fileUploadUrl, {
+    method: "OPTIONS",
+    body: ""
+});
+
 async function uploadFile(file) {
     const formData = new FormData();
     formData.append("file", file);
 
     const response = await fetch(fileUploadUrl, {
         method: 'POST',
-        // mode: 'cors',
+        mode: 'cors',
         body: 'test',
     });
 
