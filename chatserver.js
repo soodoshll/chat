@@ -285,7 +285,7 @@ fileElem.addEventListener('change', async function() {
     const file = fileElem.files[0];
     if (file) {
         fileHash = await uploadFile(file);
-        if (fileUrl) {
+        if (fileHash) {
             console.log(`File uploaded successfully: ${fileHash}`);
         } else {
             alert('File upload failed');
