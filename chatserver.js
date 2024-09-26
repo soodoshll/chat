@@ -295,7 +295,7 @@ fileElem.addEventListener('change', async function() {
     if (file) {
         fileUrl = await uploadFile(file);
         if (fileUrl) {
-            messageInput.value += `${fileUploadUrl}/${fileUrl}\n`;
+            messageInput.value += `${fileUploadUrl}${fileUrl}\n`;
         } else {
             alert('File upload failed');
         }
