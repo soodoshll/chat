@@ -283,10 +283,8 @@ async function uploadFile(file) {
     });
 
     if (response.ok) {
-        console.log(`SUCESS UPLOAD ${response}`);
-        return response;  // Assuming server returns the file URL
+        return response.text() + '/' + file.name;  // Assuming server returns the file URL
     } else {
-        alert('File upload failed');
         return null;
     }
 }
@@ -294,9 +292,9 @@ async function uploadFile(file) {
 fileElem.addEventListener('change', async function() {
     const file = fileElem.files[0];
     if (file) {
-        fileHash = await uploadFile(file);
-        if (fileHash) {
-            console.log(`File uploaded successfully: ${fileHash}`);
+        fileUrl = await uploadFile(file);
+        if (fileUrl) {
+            messageInput.value += `${fileUploadUrl}/${fileUrl}\n`;
         } else {
             alert('File upload failed');
         }
