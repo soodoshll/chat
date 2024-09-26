@@ -145,6 +145,10 @@ function wrapQuoteEvent(text) {
     });
 }
 
+function scrollToBottom(){
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
 // Load messages starting from the latest message id
 let updating = false;
 async function updateMessages(notify=true) {
@@ -152,13 +156,13 @@ async function updateMessages(notify=true) {
     updating = true;
     let currentId = await getLatestMessageId() - 1;
     if (latestId < currentId) {
-        const scorlledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
+        const scrolledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
         // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
         let messages = await getMessagesFrom(latestId + 1);
         addMessages(messages, notify=notify);
         latestId = currentId;
-        if (scorlledToBottom) {
-            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+        if (scrolledToBottom) {
+            scrollToBottom();
         }
     }
     updating = false;
@@ -238,12 +242,11 @@ async function sendMessageHandler() {
             messageInput.focus();
             autoResizeTextarea();  // Reset the textarea height
             await updateMessages();     // Load new messages
+            scrollToBottom();
         } else {
             alert('Failed to send message');
         }
-    } else {
-        alert('Please enter both a message and a username.');
-    }
+    } 
     isSending = false;
 }
 
