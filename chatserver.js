@@ -336,6 +336,8 @@ fileElem.addEventListener('change', async function() {
         fileUrl = await uploadFile(file);
         if (fileUrl) {
             messageInput.value += `${fileUploadUrl}${fileUrl}\n`;
+            sendBtn.hidden = false;
+            fileSelect.hidden = true;
         } else {
             alert('File upload failed');
         }
