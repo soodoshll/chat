@@ -329,9 +329,7 @@ fileElem.style.width = "1px";
 fileElem.style.height = "1px";
 fileElem.style.zIndex = -1;
 fileElem.addEventListener('change', async function() {
-    alert("upload chosen");
     const file = fileElem.files[0];
-    alert(await readFile(file));
     if (file) {
         fileUrl = await uploadFile(file);
         if (fileUrl) {
