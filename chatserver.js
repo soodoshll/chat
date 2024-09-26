@@ -150,7 +150,7 @@ function wrapQuoteEvent(text) {
 }
 
 function wrapURLs(text) {
-    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     return text.replace(urlPattern, function(url) {
       return `<a href="${url}" target="_blank">${url}</a>`;
     });
