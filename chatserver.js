@@ -98,12 +98,14 @@ function addQuoteEvents(div, id) {
     let holdTimeout;
 
     function quote_func() {
-        holdTimeout = setTimeout(() => {
+        holdTimeout = setTimeout((e) => {
+            e.preventDefault();
             messageInput.value += ` #${id} `; // Add div id to the input box
         }, 500); // 1 second hold time
     }
 
-    function quote_cancel() {
+    function quote_cancel(e) {
+        e.preventDefault();
         clearTimeout(holdTimeout);
     }
 
