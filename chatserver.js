@@ -272,11 +272,10 @@ async function uploadFile(file) {
     });
 
     if (response.ok) {
-        const result = await response.json();
-        console.log(`SUCESS UPLOAD ${result.fileUrl}`);
-        return result.fileUrl;  // Assuming server returns the file URL
+        console.log(`SUCESS UPLOAD ${response}`);
+        return response;  // Assuming server returns the file URL
     } else {
-        console.error('File upload failed');
+        alert('File upload failed');
         return null;
     }
 }
