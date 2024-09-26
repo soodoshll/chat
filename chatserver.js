@@ -115,7 +115,7 @@ function addQuoteEvents(div, id) {
 let currentHighLight;
 function toQuote(id){
     const div = document.getElementById(`msg_${id}`);
-    div.style.border = "solid #888";
+    div.style.border = "1px solid #888";
     if (currentHighLight)
         currentHighLight.style.border = "";
     currentHighLight = div;
