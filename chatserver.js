@@ -319,6 +319,7 @@ async function uploadFile(file) {
     }
 }
 
+
 fileElem.style.display="inline";
 // fileElem.style.visibility="hidden";
 fileElem.style.opacity = 0;
