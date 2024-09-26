@@ -275,20 +275,11 @@ setInterval(updateMessages, 2000);
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
 
-fetch(fileUploadUrl, {
-    method: "OPTIONS",
-    mode: 'cors',
-    // headers: {
-        // 'Content-Type': 'application/json', // This triggers a preflight request
-        // 'Custom-Header': 'CustomValue' // Custom headers also trigger a preflight request
-    // },
-});
-
 async function uploadFile(file) {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await fetch("http://localhost:8080/", {
+    const response = await fetch(fileUploadUrl, {
         method: 'POST',
         mode: 'cors',
         body: 'test',
