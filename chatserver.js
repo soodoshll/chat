@@ -282,7 +282,6 @@ fetch(fileUploadUrl, {
         'Content-Type': 'application/json', // This triggers a preflight request
         'Custom-Header': 'CustomValue' // Custom headers also trigger a preflight request
     },
-    body: ""
 });
 
 async function uploadFile(file) {
