@@ -283,7 +283,8 @@ async function uploadFile(file) {
     });
 
     if (response.ok) {
-        return response.text() + '/' + file.name;  // Assuming server returns the file URL
+        const hash = await response.text();
+        return hash + '/' + file.name;  // Assuming server returns the file URL
     } else {
         return null;
     }
