@@ -149,9 +149,14 @@ function wrapQuoteEvent(text) {
     });
 }
 
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
 function extractFilenameFromUrl(url) {
     // Regular expression to match URLs starting with https://uploadurl/, followed by somecache, and ending with filename
-    const pattern = `${fileUploadUrl}[a-zA-Z0-9]+\/([^\/\s]+)/`;
+    const pattern = `${escapeRegExp(fileUploadUrl)}[a-zA-Z0-9]+\/([^\/\s]+)/`;
     
     // Execute the regex to find and capture the filename
     const match = url.match(pattern);
