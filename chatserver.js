@@ -333,4 +333,6 @@ fileSelect.addEventListener(
       }
     },
     false,
-  );
+);
+
+fileElem.style.hidden="inline";
