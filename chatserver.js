@@ -157,7 +157,7 @@ function escapeRegExp(string) {
 
 function extractFilenameFromUrl(url) {
     // Regular expression to match URLs starting with https://uploadurl/, followed by somecache, and ending with filename
-    const pattern = `${escapeRegExp(fileUploadUrl)}[a-zA-Z0-9]+\/([^\/\s]+)`;
+    const pattern = `${escapeRegExp(fileUploadUrl)}[a-zA-Z0-9]+\/([^\/\\s]+)`;
 
     
     // Execute the regex to find and capture the filename
