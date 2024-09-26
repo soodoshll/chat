@@ -149,6 +149,13 @@ function wrapQuoteEvent(text) {
     });
 }
 
+function wrapURLs(text) {
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlPattern, function(url) {
+      return `<a href="${url}" target="_blank">${url}</a>`;
+    });
+}
+
 function scrollToBottom(){
     chatBox.scrollTop = chatBox.scrollHeight;
 }
@@ -211,6 +218,7 @@ function addMessages(messages, notify=true) {
         const contentDiv = document.createElement('div');
         contentDiv.classList.add('content');
         content = wrapQuoteEvent(content);
+        content = wrapURLs(content);
         contentDiv.innerHTML = content;
 
         // Append the meta-info and content to the message div
