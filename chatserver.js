@@ -115,8 +115,8 @@ function addQuoteEvents(div, id) {
 let currentHighLight;
 function toQuote(id){
     const div = document.getElementById(`msg_${id}`);
-    div.style.border = "thick solid #0000FF";
-    if (!currentHighLight)
+    div.style.border = "solid #888";
+    if (currentHighLight)
         currentHighLight.style.border = "";
     currentHighLight = div;
     chatBox.scrollTop = div.offsetTop;
