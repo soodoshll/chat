@@ -151,7 +151,8 @@ function wrapQuoteEvent(text) {
 
 
 function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return string.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&');
   }
 
 function extractFilenameFromUrl(url) {
