@@ -162,9 +162,6 @@ function extractFilenameFromUrl(url) {
     // Execute the regex to find and capture the filename
     const match = url.match(pattern);
     
-    console.log(pattern);
-    console.log(match);
-
     // If a match is found, return the captured filename (the part after /somecache/)
     if (match && match[1]) {
       return match[1];
