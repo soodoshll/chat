@@ -95,7 +95,7 @@ function notifyNewMessage() {
 }
 
 function addQuoteEvents(div, id) {
-    let holdTimeout;
+    // let holdTimeout;
     // function quote_func(e) {
     //     // e.preventDefault();
     //     holdTimeout = setTimeout(() => {
@@ -253,6 +253,38 @@ async function sendMessageHandler() {
     isSending = false;
 }
 
+
 // Poll for new messages every 2 seconds
 updateMessages(notify=false);
 setInterval(updateMessages, 2000);
+
+async function uploadFile(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch(`fileUploadUrl/${file.name}`, {
+        method: 'POST',
+        body: formData,
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        console.log(`SUCESS UPLOAD ${result.fileUrl}`);
+        return result.fileUrl;  // Assuming server returns the file URL
+    } else {
+        console.error('File upload failed');
+        return null;
+    }
+}
+
+fileInput.addEventListener('change', async function() {
+    const file = fileInput.files[0];
+    if (file) {
+        fileUrl = await uploadFile(file);
+        if (fileUrl) {
+            console.log(`File uploaded successfully: ${fileUrl}`);
+        } else {
+            alert('File upload failed');
+        }
+    }
+});

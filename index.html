@@ -76,6 +76,15 @@
             text-overflow: ellipsis;
             overflow: hidden;
         }
+
+        #file-input {
+            margin-right: 10px;
+        }
+        #send-btn {
+            height: 2em;  /* Same height as input fields */
+            padding: 0 15px;
+        }
+
         /* .timestamp {
             font-size: 0.8em;
         } */
@@ -88,6 +97,7 @@
     <div id="input-section">
         <input type="text" id="username-input" placeholder="Username" maxlength="10" />
         <textarea id="message-input" rows="1" placeholder="Enter your message here"></textarea>
+        <input type="file" id="file-input" />
         <button id="send-btn">Send</button>
     </div>
     <script>
