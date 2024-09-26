@@ -155,7 +155,7 @@ function addMessages(messages, notify=true) {
         // Separate the first word as message ID, and then split the remaining message
         const messageParts = message.split(' ');
         const messageId = messageParts[0];  // First word is the message ID
-        const content = messageParts.slice(3).join(' ');  // Rest of the message
+        let content = messageParts.slice(3).join(' ');  // Rest of the message
 
         messageDiv.id = `msg_${messageId}`
 
@@ -183,7 +183,8 @@ function addMessages(messages, notify=true) {
         // Create the content div (Message content in separate lines)
         const contentDiv = document.createElement('div');
         contentDiv.classList.add('content');
-        contentDiv.innerText = content;
+        content = wrapQuoteEvent(content);
+        contentDiv.innerHTML = content;
 
         // Append the meta-info and content to the message div
         messageDiv.appendChild(metaInfoDiv);
