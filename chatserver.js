@@ -180,7 +180,7 @@ function scrollToBottom(){
 
 // Load messages starting from the latest message id
 let updating = false;
-async function updateMessages(notify=true) {
+async function updateMessages(notify=true, recursive=false) {
     if (updating) return;
     updating = true;
     let currentId = await getLatestMessageId() - 1;
@@ -195,6 +195,8 @@ async function updateMessages(notify=true) {
         }
     }
     updating = false;
+    if (recursive) updateMessages(notify=notify, recursive=recursive);
+    setTimeout(doTask, 1000);
 }
 
 // Append messages to the chat box
@@ -301,7 +303,7 @@ async function sendMessageHandler(e) {
 
 // Poll for new messages every 2 seconds
 updateMessages(notify=false);
-setInterval(updateMessages, 2000);
+setTimeout(updateMessages, true, true);
 
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
