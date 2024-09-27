@@ -184,17 +184,21 @@ let updating = false;
 async function updateMessages(notify=true, recursive=false) {
     if (!updating) {
         updating = true;
-        let currentId = await getLatestMessageId() - 1;
-        if (currentId && (latestId < currentId)) {
-            const scrolledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
-            let messages = await getMessagesFrom(latestId + 1);
-            if (messages) {
-                addMessages(messages, notify=notify);
-                latestId = currentId;
-                if (scrolledToBottom) {
-                    scrollToBottom();
+        try {
+            let currentId = await getLatestMessageId() - 1;
+            if (currentId && (latestId < currentId)) {
+                const scrolledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
+                let messages = await getMessagesFrom(latestId + 1);
+                if (messages) {
+                    addMessages(messages, notify=notify);
+                    latestId = currentId;
+                    if (scrolledToBottom) {
+                        scrollToBottom();
+                    }
                 }
             }
+        } catch (error) {
+            console.error('An error occurred:', error);
         }
         updating = false;
     }
