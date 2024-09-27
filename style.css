@@ -19,6 +19,7 @@ body {
     min-height: 2em;
     max-height: 2em;
     border-top: 1px solid #bbb;
+    background-color: #000;
 }
 #username-input {
     width: 10ch;  /* Set to 10-character width */
