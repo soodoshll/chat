@@ -124,7 +124,7 @@ function wrapQuoteEvent(text) {
 
     // Replace each #{id} with a span containing the onclick event
     return text.replace(idPattern, (match, id) => {
-        return `<span style="color: blue; cursor: pointer;" onclick="toQuote('${id}')">#${id}</span>`;
+        return `<span class="tag" onclick="toQuote('${id}')">#${id}</span>`;
     });
 }
 

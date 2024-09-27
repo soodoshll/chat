@@ -68,3 +68,7 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.tag {
+    color: #b589dd;
+    cursor: pointer;
+}
