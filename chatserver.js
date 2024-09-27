@@ -17,8 +17,8 @@ function generateUsernameColor(username) {
     }
     // Convert the hash to an HSL color
     const h = 150 + hash % 20;
-    const s = hash % 23;
-    const l = hash % 29;
+    const s = hash % 17;
+    const l = hash % 19;
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
