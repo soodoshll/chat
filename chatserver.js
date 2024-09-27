@@ -5,6 +5,7 @@ const sendBtn = document.getElementById('send-btn');
 sendBtn.hidden = true;
 let latestId = -1;
 const updateInterval = 2000;
+usernameInput.readonly = true;
 
 // Function to generate a random light color based on the username
 function generateUsernameColor(username) {
