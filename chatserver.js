@@ -184,14 +184,16 @@ async function updateMessages(notify=true, recursive=false) {
     if (updating) return;
     updating = true;
     let currentId = await getLatestMessageId() - 1;
-    if (latestId < currentId) {
+    if (currentId && (latestId < currentId)) {
         const scrolledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
         // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
         let messages = await getMessagesFrom(latestId + 1);
-        addMessages(messages, notify=notify);
-        latestId = currentId;
-        if (scrolledToBottom) {
-            scrollToBottom();
+        if (messages) {
+            addMessages(messages, notify=notify);
+            latestId = currentId;
+            if (scrolledToBottom) {
+                scrollToBottom();
+            }
         }
     }
     updating = false;
