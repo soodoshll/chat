@@ -102,6 +102,10 @@ function addQuoteEvents(div, id) {
         messageInput.value += ` #${id} `;
     });
     div.classList.add("highlight");
+    div.addEventListener('click', function () {
+        div.classList.remove("highlight");
+        currentHighLight=undefined;
+    });
 }
 
 
@@ -111,7 +115,7 @@ function toQuote(id){
     if (!div) return;
     if (currentHighLight)
         currentHighLight.classList.remove("highlight");
-    div.style.border = "1px solid #888";
+    div.classList.add("highlight");
     currentHighLight = div;
     chatBox.scrollTop = div.offsetTop;
 }
@@ -384,5 +388,3 @@ fileSelect.addEventListener(
     },
     false,
 );
-
-webView.isInspectable = true;
