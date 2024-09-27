@@ -12,6 +12,19 @@ let params = new URLSearchParams(window.location.search);
 let ownUserId = params.get('userid');
 usernameInput.value = ownUserId;
 // usernameInput.readOnly = true;
+usernameInput.addEventListener('change', function() {
+    // Get the current value of the input
+    const newUserId = usernameInput.value;
+    
+    // Get the current URL
+    let currentUrl = new URL(window.location.href);
+    
+    // Update the 'userid' parameter in the URL
+    currentUrl.searchParams.set('userid', newUserId);
+    
+    // Redirect to the new URL
+    window.location.href = currentUrl.href;
+});
 
 // Function to generate a random light color based on the username
 function generateUsernameColor(username) {
