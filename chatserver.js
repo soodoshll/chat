@@ -17,8 +17,8 @@ function generateUsernameColor(username) {
     }
     // Convert the hash to an HSL color
     const h = 170 + hash % 20;
-    const s = hash % 29;
-    const l = hash % 19;
+    const s = hash % 31;
+    const l = hash % 29;
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
@@ -201,6 +201,7 @@ async function updateMessages(notify=true) {
 }
 
 // Append messages to the chat box
+let last_username;
 function addMessages(messages, notify=true) {
     const messages_list = messages.split("\r");
     messages_list.forEach((message) => {
@@ -251,9 +252,12 @@ function addMessages(messages, notify=true) {
 
         // Set random light background color based on the username
         const backgroundColor = generateUsernameColor(username);
-        messageDiv.style.backgroundColor = backgroundColor;
+        username.style.backgroundColor = backgroundColor;
 
         chatBox.appendChild(messageDiv);
+        if (username !== last_username)
+            chatBox.appendChild(document.createElement('hr'));
+        last_username = username;
     });
 }
 
