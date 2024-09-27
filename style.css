@@ -28,6 +28,7 @@ body {
     background-color: #333;
     color: #fff;
     border: 0;
+    border-right: 1px solid #bbb;
 }
 #message-input {
     flex-grow: 1;
@@ -46,6 +47,7 @@ body {
     border: 0;
     background-color: #333;
     color: #fff;
+    border-left: 1px solid #bbb;
 }
 .message {
     display: flex;
