@@ -128,6 +128,7 @@ function addQuoteEvents(div, id) {
     username = div.getElementsByClassName('username')[0];
     username.addEventListener('click', function() {
         messageInput.value += ` #${id} `;
+        messageInput.focus();
     });
     div.addEventListener('click', function () {
         div.classList.remove("highlight");
