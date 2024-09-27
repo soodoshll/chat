@@ -195,8 +195,8 @@ async function updateMessages(notify=true, recursive=false) {
         }
     }
     updating = false;
-    if (recursive) updateMessages(notify=notify, recursive=recursive);
-    setTimeout(doTask, 1000);
+    if (recursive) 
+        setTimeout(updateMessages, 1000, notify, recursive);
 }
 
 // Append messages to the chat box
@@ -303,7 +303,7 @@ async function sendMessageHandler(e) {
 
 // Poll for new messages every 2 seconds
 updateMessages(notify=false);
-setTimeout(updateMessages, true, true);
+setTimeout(updateMessages, 1000, true, true);
 
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
