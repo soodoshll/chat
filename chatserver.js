@@ -69,7 +69,10 @@ messageInput.addEventListener('input', autoResizeTextarea);
 messageInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault(); // Prevent adding new lines
-        sendMessageHandler(); // Trigger send message when Enter is pressed
+        if (document.activeElement == messageInput)
+            sendMessageHandler(); // Trigger send message when Enter is pressed
+        else
+            messageInput.focus();
     }
 });
 
