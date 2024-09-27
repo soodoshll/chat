@@ -69,12 +69,17 @@ messageInput.addEventListener('input', autoResizeTextarea);
 messageInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault(); // Prevent adding new lines
-        if (document.activeElement == messageInput)
-            sendMessageHandler(); // Trigger send message when Enter is pressed
-        else
-            messageInput.focus();
+        sendMessageHandler(); // Trigger send message when Enter is pressed
     }
 });
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault(); // Prevent adding new lines
+        messageInput.focus();
+    }
+});
+
 
 async function getLatestMessageId() {
     const response = await fetch(`${url}?len`);
