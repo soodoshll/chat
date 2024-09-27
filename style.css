@@ -81,8 +81,11 @@ body {
     overflow: hidden;
 }
 .tag {
-    color: #b589dd;
+    color: #e8c8f4;
     cursor: pointer;
+}
+a {
+    color: #e8c8f4;
 }
 hr {
     padding:0;
