@@ -101,10 +101,7 @@ function addQuoteEvents(div, id) {
     username.addEventListener('click', function() {
         messageInput.value += ` #${id} `;
     });
-
-    div.addEventListener('click', function () {
-        div.style.border = "";
-    });
+    div.classList.add("highlight");
 }
 
 
@@ -113,7 +110,7 @@ function toQuote(id){
     const div = document.getElementById(`msg_${id}`);
     if (!div) return;
     if (currentHighLight)
-        currentHighLight.style.border = "";
+        currentHighLight.classList.remove("highlight");
     div.style.border = "1px solid #888";
     currentHighLight = div;
     chatBox.scrollTop = div.offsetTop;
