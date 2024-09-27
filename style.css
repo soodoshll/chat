@@ -42,6 +42,7 @@ body {
     justify-content: space-between;  /* Aligns metadata and content in a row */
     align-items: center;  /* Vertically aligns metadata and content */
     padding: 5px;
+    padding-left: 20px;
     background-color: #f1f1f1;
 }
 .meta-info {
