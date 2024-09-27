@@ -15,7 +15,8 @@ body {
     display: flex;
     align-items: center;  /* Align items vertically */
     box-sizing: border-box;
-    height: 2em;
+    min-height: 2em;
+    max-height: 2em;
 }
 #username-input {
     width: 10ch;  /* Set to 10-character width */
