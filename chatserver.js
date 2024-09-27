@@ -4,6 +4,7 @@ const usernameInput = document.getElementById('username-input');
 const sendBtn = document.getElementById('send-btn');
 sendBtn.hidden = true;
 let latestId = -1;
+const updateInterval = 2000;
 
 // Function to generate a random light color based on the username
 function generateUsernameColor(username) {
@@ -198,7 +199,7 @@ async function updateMessages(notify=true, recursive=false) {
         updating = false;
     }
     if (recursive) 
-        setTimeout(updateMessages, 1000, notify, recursive);
+        setTimeout(updateMessages, updateInterval, notify, recursive);
 }
 
 // Append messages to the chat box
@@ -305,7 +306,7 @@ async function sendMessageHandler(e) {
 
 // Poll for new messages every 2 seconds
 updateMessages(notify=false);
-setTimeout(updateMessages, 1000, true, true);
+setTimeout(updateMessages, updateInterval, true, true);
 
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
