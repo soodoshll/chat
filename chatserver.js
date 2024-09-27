@@ -101,7 +101,6 @@ function addQuoteEvents(div, id) {
     username.addEventListener('click', function() {
         messageInput.value += ` #${id} `;
     });
-    div.classList.add("highlight");
     div.addEventListener('click', function () {
         div.classList.remove("highlight");
         currentHighLight=undefined;
