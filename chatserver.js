@@ -252,7 +252,7 @@ function addMessages(messages, notify=true) {
 
         // Set random light background color based on the username
         const backgroundColor = generateUsernameColor(username);
-        username.style.backgroundColor = backgroundColor;
+        usernameDiv.style.backgroundColor = backgroundColor;
 
         chatBox.appendChild(messageDiv);
         if (username !== last_username)
