@@ -17,8 +17,8 @@ function generateUsernameColor(username) {
     }
     // Convert the hash to an HSL color
     const h = hash % 360;
-    const s = hash % 31;
-    const l = hash % 29;
+    const s = hash % 100;
+    const l = 60 + hash % 10;
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
@@ -252,7 +252,7 @@ function addMessages(messages, notify=true) {
 
         // Set random light background color based on the username
         const backgroundColor = generateUsernameColor(username);
-        usernameDiv.style.backgroundColor = backgroundColor;
+        usernameDiv.style.color = backgroundColor;
 
         if (username !== last_username)
             chatBox.appendChild(document.createElement('hr'));
