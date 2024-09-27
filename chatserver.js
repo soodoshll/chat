@@ -323,7 +323,7 @@ function uploadingBarFinish(){
     uploadingBar.hidden = true;
     messageInput.hidden = false;
     fileSelect.hidden = false;
-    sendBtn.hidden = false;
+    sendBtn.hidden = true;
 }
 
 async function readFile(file) {
