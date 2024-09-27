@@ -309,6 +309,26 @@ setInterval(updateMessages, 2000);
 const fileSelect = document.getElementById("fileSelect");
 const fileElem = document.getElementById("fileElem");
 
+const uploadingBar = document.createElement("div");
+uploadingBar.innerText = "Uploading...";
+uploadingBar.hidden = true;
+const inputSection = uploadingBar.parentElement;
+inputSection.appendChild(uploadingBar);
+
+function uploadingBarStart(){
+    uploadingBar.hidden = false;
+    messageInput.hidden = true;
+    fileSelect.hidden = true;
+    sendBtn.hidden = true;
+}
+
+function uploadingBarFinish(){
+    uploadingBar.hidden = true;
+    messageInput.hidden = false;
+    fileSelect.hidden = false;
+    sendBtn.hidden = false;
+}
+
 async function readFile(file) {
     const blob = file.slice(0, file.size);  // Read the entire file
     const arrayBuffer = await blob.arrayBuffer();  // Read it as an ArrayBuffer
@@ -342,6 +362,7 @@ fileElem.style.zIndex = -1;
 fileElem.addEventListener('change', async function() {
     const file = fileElem.files[0];
     if (file) {
+        uploadingBarStart();
         fileUrl = await uploadFile(file);
         if (fileUrl) {
             messageInput.value += `${fileUploadUrl}${fileUrl}\n`;
@@ -350,6 +371,7 @@ fileElem.addEventListener('change', async function() {
         } else {
             alert('File upload failed');
         }
+        uploadingBarFinish();
     }
 });
 
