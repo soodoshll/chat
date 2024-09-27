@@ -8,8 +8,8 @@ body {
 #chat-box {
     flex-grow: 1;  /* This ensures the chat-box fills the available space */
     overflow-y: auto;
-    border: 1px solid black;
     padding: 0;
+    color: white;
 }
 #input-section {
     display: flex;
