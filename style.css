@@ -32,6 +32,7 @@ body {
     padding: 0;
     resize: none;
     overflow: hidden;
+    background-color: #000;
 }
 #input-section button{
     width: 8ch;
