@@ -254,9 +254,9 @@ function addMessages(messages, notify=true) {
         const backgroundColor = generateUsernameColor(username);
         usernameDiv.style.backgroundColor = backgroundColor;
 
-        chatBox.appendChild(messageDiv);
         if (username !== last_username)
             chatBox.appendChild(document.createElement('hr'));
+        chatBox.appendChild(messageDiv);
         last_username = username;
     });
 }
