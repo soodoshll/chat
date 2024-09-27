@@ -61,7 +61,6 @@ body {
 }
 .meta-info {
     display: flex;
-    font-size: 0.9em;
     color: #ccc;
     white-space: nowrap;  /* Prevent line breaks in metadata */
     margin-right: 15px; 
