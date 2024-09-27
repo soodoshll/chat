@@ -21,26 +21,27 @@
         #input-section {
             display: flex;
             align-items: center;  /* Align items vertically */
-            padding: 10px;
             box-sizing: border-box;
+            height: 2em;
         }
         #username-input {
             width: 10ch;  /* Set to 10-character width */
-            margin-right: 10px;
-            height: 2em;  /* Set a fixed height for alignment */
-            font-size: 1em;  /* Adjust font size */
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
         #message-input {
             flex-grow: 1;
-            margin-right: 10px;
-            height: 2em;  /* Same height as username input */
+            margin: 0;
+            min-height: 100%;
+            padding: 0;
             resize: none;
             overflow: hidden;
-            font-size: 1em;
         }
         #input-section button{
+            width: 8ch;
             height: 2em; 
-            padding: 0 15px;
+            height: 100%;
         }
         .message {
             display: flex;
@@ -53,7 +54,6 @@
         }
         .meta-info {
             display: flex;
-            /* gap: 10px;  Adds spacing between metadata elements */
             font-size: 0.9em;
             color: grey;
             white-space: nowrap;  /* Prevent line breaks in metadata */
@@ -78,7 +78,7 @@
         }
 
         #file-input {
-            margin-right: 10px;
+            margin: 0;
         }
 
         /* .timestamp {
