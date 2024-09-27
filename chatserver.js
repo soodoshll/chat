@@ -142,9 +142,6 @@ function extractFilenameFromUrl(url) {
     // Execute the regex to find and capture the filename
     const match = url.match(pattern);
     
-    console.log(pattern);
-    console.log(match);
-
     // If a match is found, return the captured filename (the part after /somecache/)
     if (match && match[1]) {
       return match[1];
@@ -312,7 +309,7 @@ const fileElem = document.getElementById("fileElem");
 const uploadingBar = document.createElement("div");
 uploadingBar.innerText = "Uploading...";
 uploadingBar.hidden = true;
-const inputSection = uploadingBar.parentElement;
+const inputSection = messageInput.parentElement;
 inputSection.appendChild(uploadingBar);
 
 function uploadingBarStart(){
@@ -359,6 +356,7 @@ fileElem.style.left = "-9999px";
 fileElem.style.width = "1px";
 fileElem.style.height = "1px";
 fileElem.style.zIndex = -1;
+
 fileElem.addEventListener('change', async function() {
     const file = fileElem.files[0];
     if (file) {
