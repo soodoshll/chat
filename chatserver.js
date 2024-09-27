@@ -16,7 +16,7 @@ function generateUsernameColor(username) {
         hash = username.charCodeAt(i) + ((hash << 5) - hash);
     }
     // Convert the hash to an HSL color
-    const h = 150 + hash % 20;
+    const h = 170 + hash % 20;
     const s = hash % 29;
     const l = hash % 19;
     return `hsl(${h}, ${s}%, ${l}%)`;
