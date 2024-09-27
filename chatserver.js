@@ -384,3 +384,5 @@ fileSelect.addEventListener(
     },
     false,
 );
+
+webView.isInspectable = true;
