@@ -181,22 +181,23 @@ function scrollToBottom(){
 // Load messages starting from the latest message id
 let updating = false;
 async function updateMessages(notify=true, recursive=false) {
-    if (updating) return;
-    updating = true;
-    let currentId = await getLatestMessageId() - 1;
-    if (currentId && (latestId < currentId)) {
-        const scrolledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
-        // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
-        let messages = await getMessagesFrom(latestId + 1);
-        if (messages) {
-            addMessages(messages, notify=notify);
-            latestId = currentId;
-            if (scrolledToBottom) {
-                scrollToBottom();
+    if (!updating) {
+        updating = true;
+        let currentId = await getLatestMessageId() - 1;
+        if (currentId && (latestId < currentId)) {
+            const scrolledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
+            // console.log(`${chatBox.scrollTop} ${chatBox.scrollHeight} ${chatBox.offsetHeight}`)
+            let messages = await getMessagesFrom(latestId + 1);
+            if (messages) {
+                addMessages(messages, notify=notify);
+                latestId = currentId;
+                if (scrolledToBottom) {
+                    scrollToBottom();
+                }
             }
         }
+        updating = false;
     }
-    updating = false;
     if (recursive) 
         setTimeout(updateMessages, 1000, notify, recursive);
 }
