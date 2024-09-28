@@ -15,7 +15,7 @@ body {
     background-color: #000;
     max-width: 100%;
     margin: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-left: 1px solid #bbb;
     border-right: 1px solid #bbb;
 }
