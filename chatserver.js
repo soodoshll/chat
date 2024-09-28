@@ -460,7 +460,7 @@ function adjustInputHeight() {
 messageInput.addEventListener('input', adjustInputHeight, false);
 adjustInputHeight();
 
-chatBox.offsetHeight = Math.max(
+chatBox.style.minHeight = Math.max(
     window.innerHeight - bottomBar.offsetHeight, chatBox.offsetHeight
 );
 scrollToBottom();
