@@ -1,5 +1,11 @@
+html, body {
+    overflow-y: hidden;  /* Disable vertical scrolling */
+    height: 100%;
+}
+
 body {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
     /* display: flex; */
     /* flex-direction: column; */
