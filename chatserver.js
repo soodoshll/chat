@@ -57,18 +57,18 @@ function formatDate(utctime) {
 }
 
 // Automatically adjust the height of the textarea
-// function adjustContentHeight() {
-//     const totalHeight = window.innerHeight;
-//     const contentHeight = totalHeight - inputSection.offsetHeight;
-//     chatBox.style.height = contentHeight + 'px';  // Set new height
-// }
+function adjustContentHeight() {
+    const totalHeight = window.innerHeight;
+    const contentHeight = totalHeight - inputSection.offsetHeight;
+    chatBox.style.height = contentHeight + 'px';  // Set new height
+}
 
 // // Initial height adjustment
-// adjustContentHeight();
+adjustContentHeight();
 
 // // Re-adjust on window resize and orientation change
-// window.addEventListener('resize', adjustContentHeight);
-// window.addEventListener('orientationchange', adjustContentHeight);
+window.addEventListener('resize', adjustContentHeight);
+window.addEventListener('orientationchange', adjustContentHeight);
 
 
 // Function to send message on Enter key press
