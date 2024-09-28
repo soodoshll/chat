@@ -126,6 +126,7 @@ function notifyNewMessage() {
       }
 }
 
+let currentHighLight;
 function addQuoteEvents(div, id) {
     username = div.getElementsByClassName('username')[0];
     username.addEventListener('click', function() {
@@ -139,7 +140,6 @@ function addQuoteEvents(div, id) {
 }
 
 
-let currentHighLight;
 function toQuote(id){
     const div = document.getElementById(`msg_${id}`);
     if (!div) return;
