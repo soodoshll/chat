@@ -6,6 +6,8 @@ body {
     height: 100vh;  /* Full height of the page */
     color: white;
     background-color: #000;
+    width: 100%;
+    max-width: 100ch;
 }
 #chat-box {
     flex-grow: 1;  /* This ensures the chat-box fills the available space */
@@ -13,9 +15,8 @@ body {
     padding: 0;
     color: white;
     background-color: #000;
-    width: 100%;
-    max-width: 100ch;
     margin: auto;
+    width: 100%;
     /* overflow: hidden; */
     border-left: 1px solid #666;
     border-right: 1px solid #666;
@@ -29,6 +30,7 @@ body {
     min-height: 2em;
     max-height: 2em;
     border-top: 1px solid #bbb;
+    width: 100%;
 }
 #username-input {
     width: 10ch;  /* Set to 10-character width */
