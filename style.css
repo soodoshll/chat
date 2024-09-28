@@ -117,6 +117,8 @@ hr {
     height:1em;
     border-top: 1px solid, #bbb;
     text-align: right;
-    color: #888;
+    background-color: #333;
+    color: #aaa;
     font-size: 0.8em;
+    padding: 2px;
 }
