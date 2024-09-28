@@ -20,6 +20,7 @@ body {
     position: fixed;
     bottom: 0;
     max-width: inherit;
+    width: inherit;
 }
 
 #chat-box {
@@ -35,7 +36,6 @@ body {
     display: flex;
     align-items: center;  /* Align items vertically */
     box-sizing: border-box;
-    /* height: 2em; */
     border-top: 1px solid #bbb;
     background-color: #333;
     width: 100%;
@@ -130,8 +130,6 @@ hr {
     font-size: 1em;
     padding: 2px;
     margin:0;
-    position: fixed;
-    bottom: 0;
 }
 
 input:focus,
