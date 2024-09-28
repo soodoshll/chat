@@ -60,7 +60,7 @@ function formatDate(utctime) {
 function autoResizeTextarea() {
     const totalHeight = window.innerHeight;
     messageInput.style.height = 'auto';  // Reset the height
-    const contentHeight = totalHeight - inputSection.height;
+    const contentHeight = totalHeight - inputSection.offsetHeight;
     messageInput.style.height = contentHeight + 'px';  // Set new height
 }
 
