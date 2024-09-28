@@ -433,5 +433,5 @@ fileSelect.addEventListener(
 );
 
 adjustContentHeight();
-window.addEventListener('resize', adjustContentHeight);
-window.addEventListener('orientationchange', adjustContentHeight);
+window.visualViewport.addEventListener('resize', adjustContentHeight);
+window.visualViewport.addEventListener('orientationchange', adjustContentHeight);
