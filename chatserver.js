@@ -443,15 +443,15 @@ fileSelect.addEventListener(
     false,
 );
 
-adjustContentHeight();
-window.addEventListener('resize', adjustContentHeight);
-window.addEventListener('orientationchange', adjustContentHeight);
+// adjustContentHeight();
+// window.addEventListener('resize', adjustContentHeight);
+// window.addEventListener('orientationchange', adjustContentHeight);
 
 function adjustInputHeight() {
     messageInput.style.height = 'auto';
     const height = Math.min(this.scrollHeight, 100);
     messageInput.style.height = height + 'px';
-    adjustContentHeight();
+    // adjustContentHeight();
   }
 
 messageInput.addEventListener('input', adjustInputHeight, false);
