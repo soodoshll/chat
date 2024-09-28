@@ -447,6 +447,7 @@ window.addEventListener('orientationchange', adjustContentHeight);
 
 messageInput.addEventListener('input', function () {
   this.style.height = 'auto';
+  const height = Math.max(this.scrollHeight, 100);
   this.style.height = this.scrollHeight + 'px';
   adjustContentHeight();
 }, false);
