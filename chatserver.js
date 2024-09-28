@@ -92,7 +92,7 @@ messageInput.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === 'Enter') {
         event.preventDefault(); // Prevent adding new lines
         messageInput.focus();
     }
@@ -447,7 +447,7 @@ window.addEventListener('orientationchange', adjustContentHeight);
 
 messageInput.addEventListener('input', function () {
   this.style.height = 'auto';
-  const height = Math.max(this.scrollHeight, 100);
+  const height = Math.min(this.scrollHeight, 100);
   this.style.height = height + 'px';
   adjustContentHeight();
 }, false);
