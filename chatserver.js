@@ -57,15 +57,20 @@ function formatDate(utctime) {
 }
 
 // Automatically adjust the height of the textarea
-function autoResizeTextarea() {
+function adjustContentHeight() {
     const totalHeight = window.innerHeight;
-    messageInput.style.height = 'auto';  // Reset the height
+    chatBox.style.height = 'auto';  // Reset the height
     const contentHeight = totalHeight - inputSection.offsetHeight;
-    messageInput.style.height = contentHeight + 'px';  // Set new height
+    chatBox.style.height = contentHeight + 'px';  // Set new height
 }
 
-// Attach event listener to the textarea to adjust height on input
-// messageInput.addEventListener('input', autoResizeTextarea);
+// Initial height adjustment
+adjustContentHeight();
+
+// Re-adjust on window resize and orientation change
+window.addEventListener('resize', adjustContentHeight);
+window.addEventListener('orientationchange', adjustContentHeight);
+
 
 // Function to send message on Enter key press
 messageInput.addEventListener('keydown', (event) => {
