@@ -125,6 +125,8 @@ hr {
     font-size: 1em;
     padding: 2px;
     margin:0;
+    position: fixed;
+    bottom: 0;
 }
 
 input:focus,
