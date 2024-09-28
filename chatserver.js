@@ -10,6 +10,7 @@ const messageInput = document.getElementById('message-input');
 const usernameInput = document.getElementById('username-input');
 const sendBtn = document.getElementById('send-btn');
 const statusBar = document.getElementById('status-bar');
+const bottomBar = document.getElementsByClassName("bottom-bar")[0];
 sendBtn.hidden = true;
 let latestId = -1;
 const updateInterval = 2000;
@@ -458,6 +459,7 @@ function adjustInputHeight() {
 messageInput.addEventListener('input', adjustInputHeight, false);
 adjustInputHeight();
 
-chatBox.innerHeight = 
-chatBox.scrollTop = chatBox.scrollHeight;
-
+chatBox.innerHeight = max(
+    window.innerHeight - bottomBar.innerHTML, chatBox.innerHeight
+);
+body.scrollTop = body.scrollHeight;
