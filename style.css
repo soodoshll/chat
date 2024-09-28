@@ -34,8 +34,8 @@ body {
     background-color: #333;
     width: 100%;
     padding: 0;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed; */
+    /* bottom: 0; */
 }
 #username-input {
     width: 10ch;  /* Set to 10-character width */
@@ -55,7 +55,7 @@ body {
     overflow: auto;
     background-color: #333;
     color: #fff;
-    border: 0;
+    border: 1em;
     border-right: 1px solid #bbb;
     border-left: 1px solid #bbb;
     font-size: 1em;
