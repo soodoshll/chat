@@ -58,8 +58,10 @@ function formatDate(utctime) {
 
 // Automatically adjust the height of the textarea
 function autoResizeTextarea() {
+    const totalHeight = window.innerHeight;
     messageInput.style.height = 'auto';  // Reset the height
-    messageInput.style.height = messageInput.scrollHeight + 'px';  // Set new height
+    const contentHeight = totalHeight - inputSection.height;
+    messageInput.style.height = contentHeight + 'px';  // Set new height
 }
 
 // Attach event listener to the textarea to adjust height on input
