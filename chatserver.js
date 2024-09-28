@@ -448,12 +448,11 @@ window.addEventListener('resize', adjustContentHeight);
 window.addEventListener('orientationchange', adjustContentHeight);
 
 function adjustInputHeight() {
-    this.style.height = 'auto';
+    messageInput.style.height = 'auto';
     const height = Math.min(this.scrollHeight, 100);
-    this.style.height = height + 'px';
+    messageInput.style.height = height + 'px';
     adjustContentHeight();
   }
+
 messageInput.addEventListener('input', adjustInputHeight, false);
-messageInput.value="x";
 adjustInputHeight();
-messageInput.value="";
