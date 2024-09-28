@@ -460,6 +460,6 @@ messageInput.addEventListener('input', adjustInputHeight, false);
 adjustInputHeight();
 
 chatBox.innerHeight = Math.max(
-    window.innerHeight - bottomBar.innerHTML, chatBox.innerHeight
+    window.innerHeight - bottomBar.innerHeight, chatBox.innerHeight
 );
 body.scrollTop = body.scrollHeight;
