@@ -147,7 +147,8 @@ function toQuote(id){
         currentHighLight.classList.remove("highlight");
     div.classList.add("highlight");
     currentHighLight = div;
-    chatBox.scrollTop = div.offsetTop - 20;
+    msgHeight = div.height;
+    chatBox.scrollTop = div.offsetTop - 4 * msgHeight;
 }
 
 function wrapQuoteEvent(text) {
