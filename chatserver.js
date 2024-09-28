@@ -92,7 +92,7 @@ messageInput.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault(); // Prevent adding new lines
         messageInput.focus();
     }
