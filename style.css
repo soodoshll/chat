@@ -16,6 +16,8 @@ body {
     max-width: 100%;
     margin: auto;
     overflow: hidden;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
 }
 #input-section {
     display: flex;
