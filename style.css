@@ -3,7 +3,6 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;  /* Full height of the page */
     color: white;
     background-color: #000;
     width: 100%;
