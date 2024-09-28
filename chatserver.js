@@ -133,10 +133,10 @@ function addQuoteEvents(div, id) {
         messageInput.value += ` #${id} `;
         messageInput.focus();
     });
-    div.addEventListener('click', function () {
-        div.classList.remove("highlight");
-        currentHighLight=undefined;
-    });
+    // div.addEventListener('click', function () {
+        // div.classList.remove("highlight");
+        // currentHighLight=undefined;
+    // });
 }
 
 
@@ -148,7 +148,6 @@ function toQuote(id){
     div.classList.add("highlight");
     currentHighLight = div;
     msgHeight = div.offsetHeight;
-    console.log(msgHeight);
     chatBox.scrollTop = div.offsetTop - 4 * msgHeight;
 }
 
