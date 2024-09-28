@@ -103,6 +103,8 @@ document.addEventListener('keydown', (event) => {
 async function getLatestMessageId() {
     const response = await fetch(`${url}?len`);
     if (response.ok) {
+        const time = new Date().toLocaleString();
+        statusBar.innerText = `last update ${time}`;
         return +(await response.text());
     }
     return null;
