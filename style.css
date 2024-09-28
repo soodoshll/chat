@@ -13,6 +13,12 @@ body {
     font-family: monospace;
     font-size: 1.2em;
 }
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+}
+
 #chat-box {
     /* flex-grow: 1; This ensures the chat-box fills the available space */
     overflow-y: auto;
@@ -34,8 +40,7 @@ body {
     background-color: #333;
     width: 100%;
     padding: 0;
-    /* position: fixed; */
-    /* bottom: 0; */
+
 }
 #username-input {
     width: 10ch;  /* Set to 10-character width */

@@ -9,15 +9,16 @@
 <body>
     <div id="chat-box"></div>
     
-    <!-- Input Section (username, message, and send button) -->
-    <div id="input-section">
-        <input type="text" id="username-input" placeholder="Username" maxlength="10" />
-        <textarea id="message-input" rows="1" placeholder="Enter your message here"></textarea>
-        <input type="file" id="fileElem" style="display:none" />
-        <button id="fileSelect" type="button">Upload</button>
-        <button id="send-btn">Send</button>
+    <div class="bottom-bar">
+        <div id="input-section">
+            <input type="text" id="username-input" placeholder="Username" maxlength="10" />
+            <textarea id="message-input" rows="1" placeholder="Enter your message here"></textarea>
+            <input type="file" id="fileElem" style="display:none" />
+            <button id="fileSelect" type="button">Upload</button>
+            <button id="send-btn">Send</button>
+        </div>
+        <div id="status-bar"></div>
     </div>
-    <div id="status-bar"></div>
     <script>
         const url = "[SECRET_URL]";
         const fileUploadUrl = "[UPLOAD_URL]";
