@@ -63,7 +63,7 @@ function formatDate(utctime) {
 
 // Automatically adjust the height of the textarea
 function adjustContentHeight() {
-    const totalHeight = window.innerHeight;
+    const totalHeight = window.visualViewport.height;
     const contentHeight = totalHeight - inputSection.offsetHeight;
     chatBox.style.height = contentHeight + 'px';  // Set new height
     document.getElementsByTagName("body")[0].style.height = totalHeight;
