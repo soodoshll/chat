@@ -41,8 +41,7 @@ body {
     background-color: #333;
     color: #fff;
     border: 0;
-    border-right: 1px solid #bbb;
-    padding: 2px;
+    padding: 2px px 2px;
 }
 #message-input {
     flex-grow: 1;
@@ -54,6 +53,8 @@ body {
     color: #fff;
     border: 0;
     padding: 2px;
+    border-right: 1px solid #bbb;
+    border-left: 1px solid #bbb;
 }
 #input-section button{
     width: 10ch;
@@ -61,7 +62,6 @@ body {
     border: 0;
     background-color: #333;
     color: #fff;
-    border-left: 1px solid #bbb;
 }
 .message {
     display: flex;
