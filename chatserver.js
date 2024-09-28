@@ -444,9 +444,9 @@ adjustContentHeight();
 window.addEventListener('resize', adjustContentHeight);
 window.addEventListener('orientationchange', adjustContentHeight);
 
-function autoResize() {
+
+messageInput.addEventListener('input', function () {
   this.style.height = 'auto';
   this.style.height = this.scrollHeight + 'px';
   adjustContentHeight();
-}
-messageInput.addEventListener('input', autoResize, false);
+}, false);
