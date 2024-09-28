@@ -353,6 +353,7 @@ async function sendMessageHandler(e) {
             scrollToBottom();
             sendBtn.hidden = true;
             fileSelect.hidden = false;
+            adjustInputHeight();
         } else {
             alert('Failed to send message');
         }
