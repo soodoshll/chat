@@ -10,6 +10,7 @@ body {
     border-left: 1px solid #666;
     border-right: 1px solid #666;
     overflow: hidden;
+    font-family: monospace;
 }
 #chat-box {
     /* flex-grow: 1;  This ensures the chat-box fills the available space */
