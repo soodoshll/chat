@@ -19,7 +19,7 @@ body {
     border-left: 1px solid #666;
     border-right: 1px solid #666;
     -ms-overflow-style: none;
-    scrollbar-width: 2px;
+    scrollbar-width: thin;
 }
 #input-section {
     display: flex;
