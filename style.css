@@ -9,12 +9,12 @@ body {
     max-width: 100ch;
     border-left: 1px solid #666;
     border-right: 1px solid #666;
-    overflow: hidden;
+    overflow: auto;
     font-family: monospace;
     font-size: 1.2em;
 }
 #chat-box {
-    flex-grow: 1; /* This ensures the chat-box fills the available space */
+    /* flex-grow: 1; This ensures the chat-box fills the available space */
     overflow-y: auto;
     padding: 0;
     color: white;
@@ -22,8 +22,8 @@ body {
     margin: 0;
     width: 100%;
     /* overflow: hidden; */
-    -ms-overflow-style: none;
-    scrollbar-width: thin;
+    /* -ms-overflow-style: none; */
+    /* scrollbar-width: thin; */
 }
 #input-section {
     display: flex;
