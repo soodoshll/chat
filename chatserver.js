@@ -169,7 +169,7 @@ function toQuote(id){
     div.classList.add("highlight");
     currentHighLight = div;
     msgHeight = div.offsetHeight;
-    chatBox.scrollTop = div.offsetTop - 4 * msgHeight;
+    window.scrollTo(0, div.offsetTop - 4 * msgHeight);
 }
 
 function wrapQuoteEvent(text) {
@@ -229,7 +229,7 @@ function escapeHTML(str) {
   
 
 function scrollToBottom(){
-    body.scrollTop = body.scrollHeight;
+    window.scrollTo(0, document.body.scrollHeight);
 }
 
 // Load messages starting from the latest message id
@@ -240,7 +240,7 @@ async function updateMessages(notify=true, recursive=false) {
         try {
             let currentId = await getLatestMessageId() - 1;
             if (currentId && (latestId < currentId)) {
-                const scrolledToBottom = body.scrollHeight - body.scrollTop - body.clientHeight < 50;
+                const scrolledToBottom = body.scrollHeight - window.scrollY - body.clientHeight < 50;
                 let messages = await getMessagesFrom(latestId + 1);
                 if (messages) {
                     addMessages(messages, notify=notify);
