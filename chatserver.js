@@ -4,6 +4,7 @@ meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-s
 document.getElementsByTagName('head')[0].appendChild(meta);
 
 
+const body = document.getElementsByTagName('body')[0];
 const chatBox = document.getElementById('chat-box');
 const messageInput = document.getElementById('message-input');
 const usernameInput = document.getElementById('username-input');
@@ -238,7 +239,7 @@ async function updateMessages(notify=true, recursive=false) {
         try {
             let currentId = await getLatestMessageId() - 1;
             if (currentId && (latestId < currentId)) {
-                const scrolledToBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50;
+                const scrolledToBottom = body.scrollHeight - body.scrollTop - body.clientHeight < 50;
                 let messages = await getMessagesFrom(latestId + 1);
                 if (messages) {
                     addMessages(messages, notify=notify);
@@ -457,5 +458,6 @@ function adjustInputHeight() {
 messageInput.addEventListener('input', adjustInputHeight, false);
 adjustInputHeight();
 
+chatBox.innerHeight = 
 chatBox.scrollTop = chatBox.scrollHeight;
 
