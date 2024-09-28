@@ -455,4 +455,6 @@ function adjustInputHeight() {
   }
 
 messageInput.addEventListener('input', adjustInputHeight, false);
+messageInput.value="x";
 adjustInputHeight();
+messageInput.value="";
