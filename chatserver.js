@@ -36,7 +36,7 @@ function jumpToNewUsername() {
     window.location.href = currentUrl.href;
 }
 
-usernameInput.addEventListener('change', jumpToNewUsername);
+// usernameInput.addEventListener('change', jumpToNewUsername);
 
 // Function to generate a random light color based on the username
 function generateUsernameColor(username) {
