@@ -8,6 +8,7 @@ const chatBox = document.getElementById('chat-box');
 const messageInput = document.getElementById('message-input');
 const usernameInput = document.getElementById('username-input');
 const sendBtn = document.getElementById('send-btn');
+const statusBar = document.getElementById('status-bar');
 sendBtn.hidden = true;
 let latestId = -1;
 const updateInterval = 2000;
@@ -71,7 +72,7 @@ function formatDate(utctime) {
 function adjustContentHeight() {
     const totalHeight = window.innerHeight;
     // alert(totalHeight);
-    const contentHeight = totalHeight - inputSection.offsetHeight;
+    const contentHeight = totalHeight - inputSection.offsetHeight - statusBar.offsetHeight;
     chatBox.style.height = contentHeight + 'px';  // Set new height
     document.getElementsByTagName("html")[0].style.height = totalHeight + 'px';
     document.getElementsByTagName("body")[0].style.height = totalHeight + 'px';
