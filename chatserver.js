@@ -456,3 +456,6 @@ function adjustInputHeight() {
 
 messageInput.addEventListener('input', adjustInputHeight, false);
 adjustInputHeight();
+
+chatBox.scrollTop = chatBox.scrollHeight;
+
