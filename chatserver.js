@@ -56,13 +56,13 @@ function formatDate(utctime) {
     }).replace(',', '');
 }
 
-// // Automatically adjust the height of the textarea
-// function autoResizeTextarea() {
-//     const totalHeight = window.innerHeight;
-//     messageInput.style.height = 'auto';  // Reset the height
-//     const contentHeight = totalHeight - inputSection.offsetHeight;
-//     messageInput.style.height = contentHeight + 'px';  // Set new height
-// }
+// Automatically adjust the height of the textarea
+function autoResizeTextarea() {
+    const totalHeight = window.innerHeight;
+    messageInput.style.height = 'auto';  // Reset the height
+    const contentHeight = totalHeight - inputSection.offsetHeight;
+    messageInput.style.height = contentHeight + 'px';  // Set new height
+}
 
 // Attach event listener to the textarea to adjust height on input
 messageInput.addEventListener('input', autoResizeTextarea);
