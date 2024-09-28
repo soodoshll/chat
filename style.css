@@ -79,8 +79,7 @@ body {
 }
 .message {
     display: flex;
-    justify-content: space-between;  /* Aligns metadata and content in a row */
-    padding: 5px;
+    padding-bottom: 2px;
     padding-left: 20px;
     background-color: #000;
 }
