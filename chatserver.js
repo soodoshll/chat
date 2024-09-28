@@ -21,7 +21,7 @@ usernameInput.value = ownUserId;
 // usernameInput.readOnly = true;
 
 function jumpToNewUsername() {
-    if (messageInput.value != "") return;
+    if (messageInput.value !== "") return;
 
     // Get the current value of the input
     const newUserId = usernameInput.value;
