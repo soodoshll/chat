@@ -9,6 +9,7 @@ body {
     max-width: 100ch;
     border-left: 1px solid #666;
     border-right: 1px solid #666;
+    overflow-y: hidden;
 }
 #chat-box {
     /* flex-grow: 1;  This ensures the chat-box fills the available space */
