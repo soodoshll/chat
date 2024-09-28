@@ -1,8 +1,8 @@
 body {
     margin: auto;
     padding: 0;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     color: white;
     background-color: #000;
     width: 100%;
