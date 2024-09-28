@@ -12,11 +12,14 @@ body {
     overflow: auto;
     font-family: monospace;
     font-size: 1.2em;
+    scrollbar-width: thin;
+    position: relative;
 }
 
 .bottom-bar {
     position: fixed;
     bottom: 0;
+    max-width: inherit;
 }
 
 #chat-box {
@@ -27,9 +30,6 @@ body {
     background-color: #000;
     margin: 0;
     width: 100%;
-    /* overflow: hidden; */
-    /* -ms-overflow-style: none; */
-    /* scrollbar-width: thin; */
 }
 #input-section {
     display: flex;
