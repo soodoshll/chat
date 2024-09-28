@@ -443,3 +443,10 @@ fileSelect.addEventListener(
 adjustContentHeight();
 window.addEventListener('resize', adjustContentHeight);
 window.addEventListener('orientationchange', adjustContentHeight);
+
+messageInput.addEventListener('input', autoResize, false);
+function autoResize() {
+  this.style.height = 'auto';
+  this.style.height = this.scrollHeight + 'px';
+  adjustContentHeight();
+}
