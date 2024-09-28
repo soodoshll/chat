@@ -229,7 +229,7 @@ function escapeHTML(str) {
   
 
 function scrollToBottom(){
-    chatBox.scrollTop = chatBox.scrollHeight;
+    body.scrollTop = body.scrollHeight;
 }
 
 // Load messages starting from the latest message id
