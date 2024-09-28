@@ -65,7 +65,7 @@ function autoResizeTextarea() {
 }
 
 // Attach event listener to the textarea to adjust height on input
-messageInput.addEventListener('input', autoResizeTextarea);
+// messageInput.addEventListener('input', autoResizeTextarea);
 
 // Function to send message on Enter key press
 messageInput.addEventListener('keydown', (event) => {
