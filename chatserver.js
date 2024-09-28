@@ -462,4 +462,4 @@ adjustInputHeight();
 chatBox.offsetHeight = Math.max(
     window.innerHeight - bottomBar.offsetHeight, chatBox.offsetHeight
 );
-body.scrollTop = body.scrollHeight;
+scrollToBottom();
