@@ -64,11 +64,9 @@ function adjustContentHeight() {
 }
 
 // // Initial height adjustment
-adjustContentHeight();
 
 // // Re-adjust on window resize and orientation change
-window.addEventListener('resize', adjustContentHeight);
-window.addEventListener('orientationchange', adjustContentHeight);
+
 
 
 // Function to send message on Enter key press
@@ -427,3 +425,7 @@ fileSelect.addEventListener(
     },
     false,
 );
+
+adjustContentHeight();
+window.addEventListener('resize', adjustContentHeight);
+window.addEventListener('orientationchange', adjustContentHeight);
