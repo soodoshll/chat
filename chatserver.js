@@ -331,7 +331,7 @@ async function sendMessageHandler(e) {
         if (success) {
             messageInput.value = '';  // Clear input
             messageInput.focus();
-            autoResizeTextarea();  // Reset the textarea height
+            // autoResizeTextarea();  // Reset the textarea height
             await updateMessages();     // Load new messages
             scrollToBottom();
             sendBtn.hidden = true;
