@@ -454,3 +454,4 @@ messageInput.addEventListener('input', function () {
   this.style.height = height + 'px';
   adjustContentHeight();
 }, false);
+
