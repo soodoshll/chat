@@ -44,7 +44,7 @@ body {
 
 }
 #username-input {
-    width: 8ch;  /* Set to 10-character width */
+    width: 10ch;  /* Set to 10-character width */
     margin: 0;
     height: 100%;
     background-color: #333;
@@ -87,7 +87,7 @@ body {
 .message {
     display: flex;
     padding-bottom: 2px;
-    padding-left: 20px;
+    padding-left: 5px;
     background-color: #000;
 }
 .meta-info {
@@ -107,7 +107,7 @@ body {
 }
 .username {
     font-weight: bold;
-    width: 8ch;  /* Set to 10-character width */
+    width: 10ch;  /* Set to 10-character width */
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
