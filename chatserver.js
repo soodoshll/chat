@@ -432,7 +432,7 @@ fileSelect.addEventListener(
     false,
 );
 
-messageInput.on("input", function () {
+messageInput.addEventListener("input", function () {
     this.innerHTML = this.innerHTML.replace("<br>", "");
   });
 
