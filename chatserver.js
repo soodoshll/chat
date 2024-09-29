@@ -432,9 +432,5 @@ fileSelect.addEventListener(
     false,
 );
 
-messageInput.addEventListener("change", function () {
-    this.innerHTML = this.innerHTML.replace("<br>", "");
- });
-
 scrollToBottom();
 
