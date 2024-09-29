@@ -24,7 +24,7 @@ if (ownUserId)
 // usernameInput.readOnly = true;
 
 function jumpToNewUsername() {
-    if (messageInput.value !== "") return;
+    if (messageInput.innerText !== "") return;
 
     // Get the current value of the input
     const newUserId = usernameInput.value;
@@ -333,7 +333,7 @@ async function sendMessageHandler(e) {
         const fullMessage = `${username} ${content}`;  // Message content, username, and timestamp
         const success = await sendMessage(fullMessage);
         if (success) {
-            messageInput.value = '';  // Clear input
+            messageInput.innerText = '';  // Clear input
             messageInput.focus();
             // autoResizeTextarea();  // Reset the textarea height
             await updateMessages();     // Load new messages
@@ -412,7 +412,7 @@ fileElem.addEventListener('change', async function() {
         uploadingBarStart();
         fileUrl = await uploadFile(file);
         if (fileUrl) {
-            messageInput.value += `${fileUploadUrl}/${fileUrl}\n`;
+            messageInput.innerText += `${fileUploadUrl}/${fileUrl}\n`;
             sendBtn.hidden = false;
             fileSelect.hidden = true;
         } else {
