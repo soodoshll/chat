@@ -23,6 +23,15 @@ if (ownUserId)
     usernameInput.value = ownUserId;
 // usernameInput.readOnly = true;
 
+function setCursorToEnd(element) {
+    const range = document.createRange();
+    const selection = window.getSelection();
+    range.selectNodeContents(element);
+    range.collapse(false); // Collapse to the end
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
 function jumpToNewUsername() {
     if (messageInput.innerText !== "") return;
 
@@ -139,6 +148,7 @@ function addQuoteEvents(div, id) {
     username.addEventListener('click', function() {
         messageInput.innerText += ` #${id} `;
         messageInput.focus();
+        setCursorToEnd(messageInput);
     });
     // div.addEventListener('click', function () {
         // div.classList.remove("highlight");
@@ -413,6 +423,7 @@ fileElem.addEventListener('change', async function() {
         fileUrl = await uploadFile(file);
         if (fileUrl) {
             messageInput.innerText += `${fileUploadUrl}/${fileUrl}\n`;
+            setCursorToEnd(messageInput);
             sendBtn.hidden = false;
             fileSelect.hidden = true;
         } else {
