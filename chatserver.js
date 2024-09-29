@@ -19,11 +19,12 @@ const updateInterval = 2000;
 let params = new URLSearchParams(window.location.search);
 // Get the 'userid' parameter
 let ownUserId = params.get('userid');
-usernameInput.value = ownUserId;
+if (ownUserId)
+    usernameInput.value = ownUserId;
 // usernameInput.readOnly = true;
 
 function jumpToNewUsername() {
-    if (messageInput.innerText !== "") return;
+    if (messageInput.value !== "") return;
 
     // Get the current value of the input
     const newUserId = usernameInput.value;
@@ -332,7 +333,7 @@ async function sendMessageHandler(e) {
         const fullMessage = `${username} ${content}`;  // Message content, username, and timestamp
         const success = await sendMessage(fullMessage);
         if (success) {
-            messageInput.innerText = '';  // Clear input
+            messageInput.value = '';  // Clear input
             messageInput.focus();
             // autoResizeTextarea();  // Reset the textarea height
             await updateMessages();     // Load new messages
@@ -411,7 +412,7 @@ fileElem.addEventListener('change', async function() {
         uploadingBarStart();
         fileUrl = await uploadFile(file);
         if (fileUrl) {
-            messageInput.innerText += `${fileUploadUrl}/${fileUrl}\n`;
+            messageInput.value += `${fileUploadUrl}/${fileUrl}\n`;
             sendBtn.hidden = false;
             fileSelect.hidden = true;
         } else {
