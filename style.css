@@ -44,7 +44,7 @@ body {
 
 }
 #username-input {
-    width: 10ch;  /* Set to 10-character width */
+    width: 8ch;  /* Set to 10-character width */
     margin: 0;
     height: 100%;
     background-color: #333;
