@@ -432,9 +432,9 @@ fileSelect.addEventListener(
     false,
 );
 
-// messageInput.addEventListener("input", function () {
-//     this.innerHTML = this.innerHTML.replace("<br>", "");
-//   });
+messageInput.addEventListener("change", function () {
+    this.innerHTML = this.innerHTML.replace("<br>", "");
+ });
 
 scrollToBottom();
 
