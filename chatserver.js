@@ -432,4 +432,11 @@ fileSelect.addEventListener(
     false,
 );
 
+messageInput.on("input", function () {
+    if (this.innerHTML === "<br>") {
+      this.innerHTML = "";
+    }
+  });
+
 scrollToBottom();
+
