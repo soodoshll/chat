@@ -429,6 +429,7 @@ fileElem.addEventListener('change', async function() {
             messageInput.value += `${fileUploadUrl}/${fileUrl}\n`;
             sendBtn.hidden = false;
             fileSelect.hidden = true;
+            adjustInputHeight();
         } else {
             alert('File upload failed');
         }
