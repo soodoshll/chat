@@ -327,7 +327,7 @@ async function sendMessageHandler(e) {
     if (isSending) return;
     isSending = true;
     const username = usernameInput.value.trim();  // Get the username
-    const content = messageInput.innerText.trim();    // Get the message
+    let content = messageInput.innerText.trim().replace("<br>", "");    // Get the message
     if (content !== '' && username !== '') {
         // Send the message content and username (server assigns the message ID)
         const fullMessage = `${username} ${content}`;  // Message content, username, and timestamp
@@ -431,6 +431,8 @@ fileSelect.addEventListener(
     },
     false,
 );
+
+
 
 scrollToBottom();
 
