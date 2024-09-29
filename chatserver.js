@@ -255,6 +255,7 @@ async function updateMessages(notify=true, recursive=false) {
         }
         updating = false;
     }
+    chatBox.style.minHeight = window.innerHeight - bottomBar.offsetHeight + "px";
     if (recursive) 
         setTimeout(updateMessages, updateInterval, notify, recursive);
 }
@@ -461,6 +462,4 @@ function adjustInputHeight() {
 messageInput.addEventListener('input', adjustInputHeight, false);
 adjustInputHeight();
 
-chatBox.style.minHeight = window.innerHeight - bottomBar.offsetHeight + "px";
 scrollToBottom();
-chatBox.style.minHeight = window.innerHeight - bottomBar.offsetHeight + "px";
