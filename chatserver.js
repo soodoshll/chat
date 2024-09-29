@@ -239,7 +239,7 @@ async function updateMessages(notify=true, recursive=false) {
         updating = true;
         try {
             let currentId = await getLatestMessageId() - 1;
-            if (currentId && (latestId < currentId)) {
+            if ((currentId !== undefined) && (latestId < currentId)) {
                 const scrolledToBottom = body.scrollHeight - window.scrollY - body.clientHeight < 50;
                 let messages = await getMessagesFrom(latestId + 1);
                 if (messages) {
