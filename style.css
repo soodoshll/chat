@@ -138,6 +138,7 @@ hr {
 input:focus,
 textarea:focus,
 select:focus,
+div:focus,
 button:focus {
   outline: none;
 }
