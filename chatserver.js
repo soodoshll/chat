@@ -433,9 +433,7 @@ fileSelect.addEventListener(
 );
 
 messageInput.on("input", function () {
-    if (this.innerHTML === "<br>") {
-      this.innerHTML = "";
-    }
+    this.innerHTML = this.innerHTML.replace("<br>", "");
   });
 
 scrollToBottom();
