@@ -23,7 +23,7 @@ usernameInput.value = ownUserId;
 // usernameInput.readOnly = true;
 
 function jumpToNewUsername() {
-    if (messageInput.value !== "") return;
+    if (messageInput.innerText !== "") return;
 
     // Get the current value of the input
     const newUserId = usernameInput.value;
@@ -69,21 +69,6 @@ function formatDate(utctime) {
         hour12: false
     }).replace(',', '');
 }
-
-// Automatically adjust the height of the textarea
-function adjustContentHeight() {
-    const totalHeight = window.innerHeight;
-    // alert(totalHeight);
-    const contentHeight = totalHeight - inputSection.offsetHeight - statusBar.offsetHeight;
-    chatBox.style.height = contentHeight + 'px';  // Set new height
-    document.getElementsByTagName("html")[0].style.height = totalHeight + 'px';
-    document.getElementsByTagName("body")[0].style.height = totalHeight + 'px';
-}
-
-// // Initial height adjustment
-
-// // Re-adjust on window resize and orientation change
-
 
 
 // Function to send message on Enter key press
@@ -151,7 +136,7 @@ let currentHighLight;
 function addQuoteEvents(div, id) {
     username = div.getElementsByClassName('username')[0];
     username.addEventListener('click', function() {
-        messageInput.value += ` #${id} `;
+        messageInput.innerText += ` #${id} `;
         messageInput.focus();
     });
     // div.addEventListener('click', function () {
@@ -324,7 +309,7 @@ function addMessages(messages, notify=true) {
 // Handle send button click
 sendBtn.addEventListener('click', sendMessageHandler);
 messageInput.addEventListener('input', function() {
-    if (messageInput.value == '') {
+    if (messageInput.innerText == '') {
         sendBtn.hidden = true;
         fileSelect.hidden = false;
     } else {
@@ -341,20 +326,19 @@ async function sendMessageHandler(e) {
     if (isSending) return;
     isSending = true;
     const username = usernameInput.value.trim();  // Get the username
-    const content = messageInput.value.trim();    // Get the message
+    const content = messageInput.innerText.trim();    // Get the message
     if (content !== '' && username !== '') {
         // Send the message content and username (server assigns the message ID)
         const fullMessage = `${username} ${content}`;  // Message content, username, and timestamp
         const success = await sendMessage(fullMessage);
         if (success) {
-            messageInput.value = '';  // Clear input
+            messageInput.innerText = '';  // Clear input
             messageInput.focus();
             // autoResizeTextarea();  // Reset the textarea height
             await updateMessages();     // Load new messages
             scrollToBottom();
             sendBtn.hidden = true;
             fileSelect.hidden = false;
-            adjustInputHeight();
         } else {
             alert('Failed to send message');
         }
@@ -427,10 +411,9 @@ fileElem.addEventListener('change', async function() {
         uploadingBarStart();
         fileUrl = await uploadFile(file);
         if (fileUrl) {
-            messageInput.value += `${fileUploadUrl}/${fileUrl}\n`;
+            messageInput.innerText += `${fileUploadUrl}/${fileUrl}\n`;
             sendBtn.hidden = false;
             fileSelect.hidden = true;
-            adjustInputHeight();
         } else {
             alert('File upload failed');
         }
@@ -447,19 +430,5 @@ fileSelect.addEventListener(
     },
     false,
 );
-
-// adjustContentHeight();
-// window.addEventListener('resize', adjustContentHeight);
-// window.addEventListener('orientationchange', adjustContentHeight);
-
-function adjustInputHeight() {
-    messageInput.style.height = 'auto';
-    const height = Math.min(this.scrollHeight, 100);
-    messageInput.style.height = height + 'px';
-    // adjustContentHeight();
-  }
-
-messageInput.addEventListener('input', adjustInputHeight, false);
-adjustInputHeight();
 
 scrollToBottom();
