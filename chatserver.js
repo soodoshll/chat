@@ -227,7 +227,7 @@ function processImage(url) {
         // else {
         const img = document.createElement('img');
         img.src = url;
-        img.style.maxWidth = "50vh";
+        img.style.maxWidth = "50vw";
         img.style.maxHeight = "50vh";
         const anchor = document.createElement('a');
         anchor.href = url;
