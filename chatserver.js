@@ -202,7 +202,7 @@ function extractFilenameFromUrl(url) {
   }
 
 function processImage(url) {
-    try {
+    // try {
         // const xhr = new XMLHttpRequest();
         
         // // Open a synchronous HEAD request to get the metadata
