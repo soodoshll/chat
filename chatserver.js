@@ -201,6 +201,12 @@ function extractFilenameFromUrl(url) {
     return null;
   }
 
+function isImageUrl(url) {
+    // Regular expression to match common image extensions at the end of the URL
+    const imageRegex = /\.(jpg|jpeg|png|gif|bmp|svg|webp|tiff)(\?.*)?$/i;
+    return imageRegex.test(url);
+}
+
 function processImage(url) {
     // try {
         // const xhr = new XMLHttpRequest();
@@ -240,11 +246,7 @@ function processImage(url) {
 function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     return text.replace(urlPattern, function(url) {
-        const tryImage = processImage(url);
-        console.log(tryImage);
-        if (tryImage) {
-            return tryImage.outerHTML;
-        }
+        if (isImageUrl(url)) return processImage(url).outerHTML;
         let display_url = extractFilenameFromUrl(url);
         if (!display_url) display_url = url;
         return `<a href="${url}" target="_blank">${display_url}</a>`;
