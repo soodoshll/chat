@@ -201,8 +201,37 @@ function extractFilenameFromUrl(url) {
     return null;
   }
 
+async function processImage(url) {
+    try {
+        const response = await fetch(url, {
+            method: 'HEAD',
+        });
+        const contentType = response.headers.get('Content-Type');
+        if (!contentType || !contentType.startsWith('image/')) return null;
+
+        const contentLength = response.headers.get('Content-Length');
+        if (!contentLength) return null;
+
+        if (sizeInMB > 1024 * 1024) return null;
+        else {
+            const img = document.createElement('img');
+            img.src = url;
+            return img;
+        }
+
+    } catch (error) {
+        console.error('Error fetching resource:', error);
+        return null;
+    }
+
+}
+
 function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
+    const tryImage = processImage(url);
+    if (tryImage) {
+        return tryImage.outerHTML;
+    }
     return text.replace(urlPattern, function(url) {
         let display_url = extractFilenameFromUrl(url);
         if (!display_url) display_url = url;
