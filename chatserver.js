@@ -58,7 +58,7 @@ function generateUsernameColor(username) {
     // Create a simple hash from the username
     let hash = 0;
     for (let i = 0; i < username.length; i++) {
-        const char = input.charCodeAt(i);
+        const char = username.charCodeAt(i);
         hash = ((hash << 5) - hash) + char;
         hash = hash & hash; // Convert to 32-bit integer
     }
