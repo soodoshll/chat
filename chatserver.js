@@ -230,7 +230,7 @@ async function processImage(url) {
 function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     return text.replace(urlPattern, function(url) {
-        const tryImage = await processImage(url);
+        const tryImage = processImage(url);
         console.log(tryImage);
         if (tryImage) {
             return tryImage.outerHTML;
