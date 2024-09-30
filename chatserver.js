@@ -204,51 +204,55 @@ function extractFilenameFromUrl(url) {
     return null;
   }
 
-function isImageUrl(url) {
-    // Regular expression to match common image extensions at the end of the URL
+  function isImageUrl(url) {
     const imageRegex = /\.(jpg|jpeg|png|gif|bmp|svg|webp|tiff)(\?.*)?$/i;
     return imageRegex.test(url);
 }
 
-function processImage(url) {
-    // try {
-        // const xhr = new XMLHttpRequest();
-        
-        // // Open a synchronous HEAD request to get the metadata
-        // xhr.open('HEAD', url, false); // `false` makes it synchronous
-        // xhr.timeout = 500;
-        // xhr.send();
-        
-        // const contentType = xhr.getResponseHeader('Content-Type');
-        // if (!contentType || !contentType.startsWith('image/')) return null;
+function isVideoUrl(url) {
+    const videoRegex = /\.(mp4|webm|ogg|mov|avi|mkv|flv)(\?.*)?$/i;
+    return videoRegex.test(url);
+}
 
-        // const contentLength = xhr.getResponseHeader('Content-Length');
-        // if (!contentLength) return null;
+function isAudioUrl(url) {
+    const audioRegex = /\.(mp3|wav|ogg|flac|aac|m4a)(\?.*)?$/i;
+    return audioRegex.test(url);
+}
 
-        // const sizeInBytes = parseInt(contentLength, 10);
-        // if (sizeInBytes > 1024 * 1024) return null;
-        // else {
+function convertUrlToHtml(url) {
+    if (isImageUrl(url)) {
+        // Create an <img> element wrapped in <a>
         const img = document.createElement('img');
         img.src = url;
-        img.alt = url;
         const anchor = document.createElement('a');
         anchor.href = url;
-        anchor.target = '_blank'; // Opens the image in a new tab
+        anchor.target = '_blank'; // Opens in a new tab
         anchor.appendChild(img);
         return anchor;
-    //     }
-
-    // } catch (error) {
-    //     console.error('Error fetching resource:', error);
-    //     return null;
-    // }
-
+    } else if (isVideoUrl(url)) {
+        // Create a <video> element
+        const video = document.createElement('video');
+        video.src = url;
+        video.controls = true; // Add play/pause controls
+        return video;
+    } else if (isAudioUrl(url)) {
+        // Create an <audio> element
+        const audio = document.createElement('audio');
+        audio.src = url;
+        audio.controls = true; // Add play/pause controls
+        return audio;
+    } else {
+        console.log('URL is not recognized as an image, video, or audio file.');
+        return null;
+    }
 }
+
 
 function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     return text.replace(urlPattern, function(url) {
-        if (isImageUrl(url)) return processImage(url).outerHTML;
+        let convert = convertUrlToHtml(url);
+        if (convert) return convert;
         let display_url = extractFilenameFromUrl(url);
         if (!display_url) display_url = url;
         return `<a href="${url}" target="_blank">${display_url}</a>`;

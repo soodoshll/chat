@@ -154,3 +154,8 @@ button:focus {
     max-height: 128px;
     border: 1px solid #ccc;
 }
+
+.message video {
+    max-width: 50vw;
+    max-height: 50vh;
+}
