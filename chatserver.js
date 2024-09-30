@@ -252,7 +252,7 @@ function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     return text.replace(urlPattern, function(url) {
         let convert = convertUrlToHtml(url);
-        if (convert) return convert;
+        if (convert) return convert.outerHTML;
         let display_url = extractFilenameFromUrl(url);
         if (!display_url) display_url = url;
         return `<a href="${url}" target="_blank">${display_url}</a>`;
