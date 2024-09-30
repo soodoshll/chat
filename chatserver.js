@@ -229,6 +229,7 @@ function processImage(url) {
         img.src = url;
         img.style.maxWidth = "100px";
         img.style.maxHeight = "100px";
+        img.alt = url;
         const anchor = document.createElement('a');
         anchor.href = url;
         anchor.target = '_blank'; // Opens the image in a new tab
