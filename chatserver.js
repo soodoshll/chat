@@ -212,7 +212,8 @@ async function processImage(url) {
         const contentLength = response.headers.get('Content-Length');
         if (!contentLength) return null;
 
-        if (sizeInMB > 1024 * 1024) return null;
+        const sizeInBytes = parseInt(contentLength, 10);
+        if (sizeInBytes > 1024 * 1024) return null;
         else {
             const img = document.createElement('img');
             img.src = url;
