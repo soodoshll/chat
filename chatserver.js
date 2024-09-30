@@ -203,31 +203,31 @@ function extractFilenameFromUrl(url) {
 
 function processImage(url) {
     try {
-        const xhr = new XMLHttpRequest();
+        // const xhr = new XMLHttpRequest();
         
-        // Open a synchronous HEAD request to get the metadata
-        xhr.open('HEAD', url, false); // `false` makes it synchronous
-        xhr.timeout = 500;
-        xhr.send();
+        // // Open a synchronous HEAD request to get the metadata
+        // xhr.open('HEAD', url, false); // `false` makes it synchronous
+        // xhr.timeout = 500;
+        // xhr.send();
         
-        const contentType = xhr.getResponseHeader('Content-Type');
-        if (!contentType || !contentType.startsWith('image/')) return null;
+        // const contentType = xhr.getResponseHeader('Content-Type');
+        // if (!contentType || !contentType.startsWith('image/')) return null;
 
-        const contentLength = xhr.getResponseHeader('Content-Length');
-        if (!contentLength) return null;
+        // const contentLength = xhr.getResponseHeader('Content-Length');
+        // if (!contentLength) return null;
 
-        const sizeInBytes = parseInt(contentLength, 10);
-        if (sizeInBytes > 1024 * 1024) return null;
-        else {
-            const img = document.createElement('img');
-            img.src = url;
-            return img;
-        }
+        // const sizeInBytes = parseInt(contentLength, 10);
+        // if (sizeInBytes > 1024 * 1024) return null;
+        // else {
+        const img = document.createElement('img');
+        img.src = url;
+        return img;
+    //     }
 
-    } catch (error) {
-        console.error('Error fetching resource:', error);
-        return null;
-    }
+    // } catch (error) {
+    //     console.error('Error fetching resource:', error);
+    //     return null;
+    // }
 
 }
 
