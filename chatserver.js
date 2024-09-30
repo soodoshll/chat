@@ -201,15 +201,19 @@ function extractFilenameFromUrl(url) {
     return null;
   }
 
-async function processImage(url) {
+function processImage(url) {
     try {
-        const response = await fetch(url, {
-            method: 'HEAD',
-        });
-        const contentType = response.headers.get('Content-Type');
+        const xhr = new XMLHttpRequest();
+        
+        // Open a synchronous HEAD request to get the metadata
+        xhr.open('HEAD', url, false); // `false` makes it synchronous
+        xhr.timeout = 500;
+        xhr.send();
+        
+        const contentType = xhr.getResponseHeader('Content-Type');
         if (!contentType || !contentType.startsWith('image/')) return null;
 
-        const contentLength = response.headers.get('Content-Length');
+        const contentLength = xhr.getResponseHeader('Content-Length');
         if (!contentLength) return null;
 
         const sizeInBytes = parseInt(contentLength, 10);
