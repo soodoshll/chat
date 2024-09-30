@@ -231,7 +231,7 @@ function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     return text.replace(urlPattern, function(url) {
         const tryImage = processImage(url);
-        if (tryImage !== null) {
+        if (tryImage) {
             return tryImage.outerHTML;
         }
         let display_url = extractFilenameFromUrl(url);
