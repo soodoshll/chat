@@ -223,7 +223,11 @@ function processImage(url) {
         img.src = url;
         img.style.maxWidth = "80%";
         img.style.maxHeight = "80%";
-        return img;
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.target = '_blank'; // Opens the image in a new tab
+        anchor.appendChild(img);
+        return anchor;
     //     }
 
     // } catch (error) {
