@@ -221,6 +221,8 @@ function processImage(url) {
         // else {
         const img = document.createElement('img');
         img.src = url;
+        img.style.maxWidth = "80%";
+        img.style.maxHeight = "80%";
         return img;
     //     }
 
