@@ -229,7 +229,7 @@ async function processImage(url) {
 function wrapURLs(text) {
     const urlPattern = /(https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+)/g;
     const tryImage = processImage(url);
-    if (tryImage) {
+    if (tryImage !== null) {
         return tryImage.outerHTML;
     }
     return text.replace(urlPattern, function(url) {
