@@ -221,8 +221,8 @@ function processImage(url) {
         // else {
         const img = document.createElement('img');
         img.src = url;
-        img.style.maxWidth = "80%";
-        img.style.maxHeight = "80%";
+        img.style.maxWidth = "100%";
+        img.style.maxHeight = "100%";
         const anchor = document.createElement('a');
         anchor.href = url;
         anchor.target = '_blank'; // Opens the image in a new tab
